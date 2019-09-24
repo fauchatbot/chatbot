@@ -2,7 +2,7 @@
     "name": "Sato crypto bot",
     "description": "The server side for Sato.",
     "image": "heroku/python",
-    "repository": "https://github.com/Ahirice/sato",
+    "repository": "https://github.com/fauchatbot/chatbot",
     "keywords": ["python", "flask" ],
     "addons": [ "heroku-postgresql" ],
     "environments": {

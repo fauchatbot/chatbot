@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 port = int(os.environ["PORT"])
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def index():
     return 'Home Page'
 
