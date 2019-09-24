@@ -20,6 +20,9 @@ def wikipedia_search():
     import nltk
     nltk.download('punkt')
 
+
+    data = json.loads(request.get_data())
+    print(data)
     wikipedia.set_lang("de")
     blob = TextBlob("Where is Baku?")
     liste= blob.tags
@@ -27,7 +30,7 @@ def wikipedia_search():
         if l[1]=="NN":
             nomen=l[0]
         
-    print(nomen)
+    # print(nomen)
     suchwort=nomen
 
 
