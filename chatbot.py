@@ -22,21 +22,20 @@ def wikipedia_search():
 
 
     data = json.loads(request.get_data())
-    print(data)
     wikipedia.set_lang("de")
-    blob = TextBlob("Where is Baku?")
+    blob = TextBlob(data['nlp']['source'])
     liste= blob.tags
     for l in liste:
-        if l[1]=="NN":
+        if l[1] == "NN" or l[1] =="FW" :
             nomen=l[0]
         
     # print(nomen)
-    suchwort=nomen
+    suchwort = nomen
 
 
     try:
         wikipediaseite = wikipedia.page(suchwort)
-        answer = wikipedia.summary(suchwort, sentences=5)+" Weiterlesen? "+ wikipediaseite.url
+        answer = wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
         return jsonify( 
         status=200, 
         replies=[{ 
