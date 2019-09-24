@@ -9,7 +9,7 @@ port = int(os.environ["PORT"])
 def weather():
     pass
 
-@app.route('/wikipedia')
+@app.route('/wikipedia', method=['POST'])
 def wikipedia_search():
     from textblob_de import TextBlobDE as TextBlob
     from textblob_de import PatternParser
