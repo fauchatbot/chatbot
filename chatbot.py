@@ -20,7 +20,7 @@ def wikipedia_search():
     import nltk
     nltk.download('punkt')
 
-    # nomen = ''
+    nomen = 'Not Found Page'
     data = json.loads(request.get_data())
     wikipedia.set_lang("de")
     blob = TextBlob(data['nlp']['source'])
@@ -31,7 +31,6 @@ def wikipedia_search():
         
     # print(nomen)
     suchwort = nomen
-
 
     try:
         wikipediaseite = wikipedia.page(suchwort)
