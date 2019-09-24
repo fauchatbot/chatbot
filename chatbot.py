@@ -33,12 +33,30 @@ def wikipedia_search():
 
     try:
         wikipediaseite = wikipedia.page(suchwort)
-        print(wikipedia.summary(suchwort, sentences=5)+" Weiterlesen? "+ wikipediaseite.url)
-        
+        answer = wikipedia.summary(suchwort, sentences=5)+" Weiterlesen? "+ wikipediaseite.url
+        return jsonify( 
+        status=200, 
+        replies=[{ 
+          'type': 'text', 
+          'content': answer,
+        }], 
+        conversation={ 
+          'memory': { 'key': 'value' } 
+        } 
+      )
         
     except wikipedia.exceptions.DisambiguationError as e:
+        return jsonify( 
+        status=200, 
+        replies=[{ 
+          'type': 'text', 
+          'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
+        }], 
+        conversation={ 
+          'memory': { 'key': 'value' } 
+        } 
+      )        
         
-        print("Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.")
 
 
 
