@@ -1,0 +1,7 @@
+Flask==0.12.2
+requests==2.18.4
+sapcai ==4.0.0
+psycopg2 ==2.8.3
+textblob_de ==0.4.3
+wikipedia ==1.4.0
+strsim ==0.0.3
