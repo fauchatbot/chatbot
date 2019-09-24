@@ -66,9 +66,10 @@ def wetter():
     api_address='http://api.openweathermap.org/data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q='
     data = json.loads(request.get_data())
     print(data)
-    
-    city = data["nlp"]["entities"]["location.raw"]
+
+    # city = data["nlp"]["entities"]["location.raw"]
     # city = input('City Name:')
+    city = 'Berlin'
     url = api_address + city
     json_data = requests.get(url).json()
     #print(json_data )
