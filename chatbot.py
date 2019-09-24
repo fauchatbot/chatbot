@@ -9,7 +9,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-@app.route('/wikipedia', method=['POST'])
+@app.route('/wikipedia', methods=['POST'])
 def wikipedia_search():
     from textblob_de import TextBlobDE as TextBlob
     from textblob_de import PatternParser
