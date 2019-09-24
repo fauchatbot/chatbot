@@ -20,14 +20,14 @@ def wikipedia_search():
     import nltk
     nltk.download('punkt')
 
-
+    # nomen = ''
     data = json.loads(request.get_data())
     wikipedia.set_lang("de")
     blob = TextBlob(data['nlp']['source'])
     liste= blob.tags
     for l in liste:
-        if l[1] == "NN" or l[1] =="FW" :
-            nomen=l[0]
+        if l[1] in ['NN', 'FW', 'NNS', 'NNP', 'NNPS']:
+            nomen = l[0]
         
     # print(nomen)
     suchwort = nomen
