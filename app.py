@@ -5,9 +5,9 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 port = int(os.environ["PORT"])
 
-@app.route('/weather')
-def weather():
-    pass
+@app.route('/')
+def index():
+    return 'Home Page'
 
 @app.route('/wikipedia', method=['POST'])
 def wikipedia_search():
