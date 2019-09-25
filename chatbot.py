@@ -142,6 +142,7 @@ def mensa():
     text = soup(result.content)
     final_text = text.findAll("div", {"style": 'background-color:#ecf0f1;border-radius: 4px 4px 0px 0px; padding: 8px;'})[0].get_text()
     txt = re.sub('[\n\r\xa0]', '', final_text)
+    txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
     essen_list = ''
     for i in txt:
