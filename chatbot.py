@@ -63,25 +63,26 @@ def wikipedia_search():
 @app.route('/wetter', methods=['POST'])
 def wetter():
 
-    api_address='http://api.openweathermap.org/data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q='
-    data = json.loads(request.get_data())
-    print(data)
+    # api_address='http://api.openweathermap.org/data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q='
+    # data = json.loads(request.get_data())
+    # print(data)
 
-    # city = data["nlp"]["entities"]["location.raw"]
-    # city = input('City Name:')
-    city = 'Berlin'
-    url = api_address + city
-    json_data = requests.get(url).json()
-    #print(json_data )
-    aktuelletemperatur = str(json_data["main"]["temp"]-273.15)
-    höchsttemperatur = str(json_data["main"]["temp_max"]-273.15)
-    windgeschwindigkeit= str(json_data["wind"]["speed"])
+    # # city = data["nlp"]["entities"]["location.raw"]
+    # # city = input('City Name:')
+    # city = 'Berlin'
+    # url = api_address + city
+    # json_data = requests.get(url).json()
+    # #print(json_data )
+    # aktuelletemperatur = str(json_data["main"]["temp"]-273.15)
+    # höchsttemperatur = str(json_data["main"]["temp_max"]-273.15)
+    # windgeschwindigkeit= str(json_data["wind"]["speed"])
 
     return jsonify( 
             status=200, 
             replies=[{ 
             'type': 'text', 
-            'content': "Die aktuelle Temperatur in "+ city+ " beträgt "+aktuelletemperatur [0:4] + " C°. Die Tageshöchstemperatur wird " + höchsttemperatur [0:4]+ " C° nicht übersteigen. Der Wind weht mit einer Geschwindigkeit von " + windgeschwindigkeit+" km/h.",
+            'content':'This function works',
+            # 'content': "Die aktuelle Temperatur in "+ city+ " beträgt "+aktuelletemperatur [0:4] + " C°. Die Tageshöchstemperatur wird " + höchsttemperatur [0:4]+ " C° nicht übersteigen. Der Wind weht mit einer Geschwindigkeit von " + windgeschwindigkeit+" km/h.",
             }], 
             conversation={ 
             'memory': { 'key': 'value' } 
