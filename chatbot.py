@@ -1,5 +1,5 @@
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
-import urllib3 as urllib
+import urllib
 from textblob_de import TextBlobDE as TextBlob
 from textblob_de import PatternParser
 from textblob_de.packages import pattern_de as pd

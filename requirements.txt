@@ -5,4 +5,3 @@ psycopg2 ==2.8.3
 textblob_de ==0.4.3
 wikipedia ==1.4.0
 strsim ==0.0.3
-urllib3 ==1.25.3
