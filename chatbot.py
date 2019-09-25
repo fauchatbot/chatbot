@@ -1,3 +1,5 @@
+from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
+import urllib3 as urllib
 from textblob_de import TextBlobDE as TextBlob
 from textblob_de import PatternParser
 from textblob_de.packages import pattern_de as pd
@@ -67,7 +69,7 @@ def wetter():
     data = json.loads(request.get_data())
     # print(data)
 
-    city = data["nlp"]["entities"]["location"][0]['city']
+    city = data["nlp"]["entities"]["location"][0]['raw']
     # city = input('City Name:')
     # city = 'Berlin'
     url = api_address + city
@@ -88,7 +90,50 @@ def wetter():
             'memory': { 'key': 'value' } 
             } 
         )
-    
+
+@app.route('/news')
+def news():
+    encoding=None
+    extracttags={"title":"no title","link":None,"description":"no description"}
+    dom_obj = makeDomObjFromFile( urllib.request.urlopen("http://www.tagesschau.de/newsticker.rdf") )
+    news = []
+
+    for item in dom_obj.getElementsByTagName("item"):
+        extracted_item={}
+        for tag in extracttags:
+            try:
+                text=""
+                for node in item.getElementsByTagName(tag)[0].childNodes:
+                    if node.nodeType == node.TEXT_NODE:
+                        text += node.data
+                assert text != ""
+            except (IndexError,AssertionError):
+                extracted_item[tag]=extracttags[tag]
+            else:
+                if encoding:
+                    text=text.encode(encoding)
+                extracted_item[tag]=text
+        news.append(extracted_item)
+
+    sentences = ''
+    if len(news)>=5:
+        for i in range (0,3):
+            sentences += "Neues in der Welt:" + '\n' + news[i]['title'] + '\n' + news[i]['description'] + '\n' + news[i]['link'] + '\n'
+    else:
+        for i in range (0,len(news)):
+            sentences += "Neues in der Welt:" + '\n' + news[i]['title'] + '\n' + news[i]['description'] + '\n' + news[i]['link'] + '\n'
+
+    return jsonify( 
+            status=200, 
+            replies=[{ 
+            'type': 'text', 
+            'content':sentences,
+            }], 
+            conversation={ 
+            'memory': { 'key': 'value' } 
+            } 
+        )
+
 
 
 @app.route('/errors', methods=['POST'])
