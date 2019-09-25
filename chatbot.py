@@ -144,9 +144,10 @@ def mensa():
     txt = re.sub('[\n\r\xa0]', '', final_text)
     txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
-    essen_list = ''
-    for i in range(0,len(txt)):
-        essen_list += txt[i] + ' '
+    essen_list = []
+    for i in txt:
+        # essen_list += txt[i] + ' '
+        essen_list.append(i)
 
     return jsonify( 
     status=200, 
