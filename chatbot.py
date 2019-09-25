@@ -64,7 +64,7 @@ def wikipedia_search():
 def wetter():
 
     # api_address='http://api.openweathermap.org/data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q='
-    # data = json.loads(request.get_data())
+    data = json.loads(request.get_data())
     # print(data)
 
     # # city = data["nlp"]["entities"]["location.raw"]
@@ -81,7 +81,7 @@ def wetter():
             status=200, 
             replies=[{ 
             'type': 'text', 
-            'content':'This function works',
+            'content':data,
             # 'content': "Die aktuelle Temperatur in "+ city+ " beträgt "+aktuelletemperatur [0:4] + " C°. Die Tageshöchstemperatur wird " + höchsttemperatur [0:4]+ " C° nicht übersteigen. Der Wind weht mit einer Geschwindigkeit von " + windgeschwindigkeit+" km/h.",
             }], 
             conversation={ 
