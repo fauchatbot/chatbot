@@ -67,7 +67,7 @@ def wetter():
     data = json.loads(request.get_data())
     # print(data)
 
-    city = data["nlp"]["entities"]["location.raw"]
+    city = data["nlp"]["entities"]["location"][0]['city']
     # # city = input('City Name:')
     # city = 'Berlin'
     # url = api_address + city
