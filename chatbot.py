@@ -153,7 +153,7 @@ def mensa():
     status=200, 
     replies=[{ 
       'type': 'text', 
-      'content': essen_list,
+      'content': 'Speiseplan Mittwoch 25.09.2019 Falafel mit Salat [Wz] türkischer Reis [Wz] Tomatenchutney (veg)2,85€(Stud.) 3,85€ (Bed.) 5,70€ (Gäste)  Putengeschnetzeltes "Thai-Style" [Wz,So]2,59€(Stud.) 3,59€ (Bed.) 5,18€ (Gäste)  Cordon Bleu vom Schwein mit Zitrone [4,7,Wz,Mi]2,09€(Stud.) 3,09€ (Bed.) 4,18€ (Gäste) | 25.09.2019 | ',
     }], 
     conversation={ 
       'memory': { 'key': 'value' } 
