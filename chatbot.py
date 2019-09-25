@@ -153,7 +153,7 @@ def mensa():
     status=200, 
     replies=[{ 
       'type': 'text', 
-      'content': essen_list,
+      'content': essen_list[2],
     }], 
     conversation={ 
       'memory': { 'key': 'value' } 
