@@ -147,9 +147,9 @@ def mensa():
     essen_list = ''
     for i in txt:
         essen_list += i + ' '
-        # essen_list.append(i)
 
-    print(essen_list)
+
+    print(txt)
     return jsonify( 
     status=200, 
     replies=[{ 
