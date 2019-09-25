@@ -8,6 +8,7 @@ from similarity.jarowinkler import JaroWinkler
 from wikipedia.exceptions import DisambiguationError
 import requests
 from bs4 import BeautifulSoup as soup
+import lxml
 import re
 import os
 import json
@@ -139,7 +140,7 @@ def news():
 @app.route('/mensa')
 def mensa():
     result = requests.get('https://www.werkswelt.de/index.php?id=isch')
-    text = soup(result.content, 'html.parser')
+    text = soup(result.content, 'lxml')
     final_text = text.findAll("div", {"style": 'background-color:#ecf0f1;border-radius: 4px 4px 0px 0px; padding: 8px;'})[0].get_text()
     txt = re.sub('[\n\r\xa0]', '', final_text)
     txt = re.sub(' +', ' ',txt)
