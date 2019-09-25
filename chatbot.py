@@ -67,7 +67,7 @@ def wetter():
     data = json.loads(request.get_data())
     # print(data)
 
-    # # city = data["nlp"]["entities"]["location.raw"]
+    city = data["nlp"]["entities"]["location.raw"]
     # # city = input('City Name:')
     # city = 'Berlin'
     # url = api_address + city
@@ -81,7 +81,7 @@ def wetter():
             status=200, 
             replies=[{ 
             'type': 'text', 
-            'content':data,
+            'content':city,
             # 'content': "Die aktuelle Temperatur in "+ city+ " beträgt "+aktuelletemperatur [0:4] + " C°. Die Tageshöchstemperatur wird " + höchsttemperatur [0:4]+ " C° nicht übersteigen. Der Wind weht mit einer Geschwindigkeit von " + windgeschwindigkeit+" km/h.",
             }], 
             conversation={ 
