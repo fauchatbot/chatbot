@@ -1,5 +1,5 @@
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
-import urllib3 as urllib
+import urllib3
 from textblob_de import TextBlobDE as TextBlob
 from textblob_de import PatternParser
 from textblob_de.packages import pattern_de as pd
@@ -95,7 +95,7 @@ def wetter():
 def news():
     encoding=None
     extracttags={"title":"no title","link":None,"description":"no description"}
-    dom_obj = makeDomObjFromFile( urllib.request.urlopen("http://www.tagesschau.de/newsticker.rdf") )
+    dom_obj = makeDomObjFromFile(urllib3.request.urlopen("http://www.tagesschau.de/newsticker.rdf"))
     news = []
 
     for item in dom_obj.getElementsByTagName("item"):
