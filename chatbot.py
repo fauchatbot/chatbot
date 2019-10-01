@@ -1,7 +1,3 @@
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter #process_pdf 
-from pdfminer.pdfpage import PDFPage 
-from pdfminer.converter import TextConverter
-from pdfminer.layout import LAParams
 from io import StringIO
 from dictionaries import dictionary,dict_list_bereinigt
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
