@@ -170,6 +170,9 @@ def mensa():
 
 @app.route('/search', methods=['POST'])
 def search():
+
+    data = json.loads(request.get_data())
+    print(data)
     jarowinkler = JaroWinkler() 
 
     searchword = 'Bitcoin'
