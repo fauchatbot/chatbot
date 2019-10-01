@@ -196,9 +196,10 @@ def search():
 
     return jsonify( 
     status=200, 
-    replies=[{'type': 'text',
-              'content': 'Ich habe 40 Seite(n) im Skript mit Bitcoin finden können'
-            }], 
+    replies=[{ 
+      'type': 'text', 
+      'content': "essen_list",
+    }], 
     conversation={ 
       'memory': { 'key': 'value' } 
     } 
