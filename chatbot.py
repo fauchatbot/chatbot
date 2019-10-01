@@ -196,10 +196,7 @@ def search():
 
     return jsonify( 
     status=200, 
-    replies=[{ 
-      'type': 'text', 
-      'content': "essen_list",
-    }], 
+    replies=result, 
     conversation={ 
       'memory': { 'key': 'value' } 
     } 
