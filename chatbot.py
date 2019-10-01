@@ -1,3 +1,9 @@
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter #process_pdf 
+from pdfminer.pdfpage import PDFPage 
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from io import StringIO
+from dictionaries import dictionary,dict_list_bereinigt
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
 import urllib
 from textblob_de import TextBlobDE as TextBlob
@@ -157,6 +163,41 @@ def mensa():
       'type': 'text', 
       'content': essen_list,
     }], 
+    conversation={ 
+      'memory': { 'key': 'value' } 
+    } 
+  )
+
+@app.route('/search', methods=['POST'])
+def search():
+    jarowinkler = JaroWinkler() 
+
+    searchword = 'Bitcoin'
+    found_pages = []
+
+    for d in dict_list_bereinigt:
+        for key, value in d.items():
+            for i in value:
+                if jarowinkler.similarity(i.lower(), searchword.lower())>0.95:
+                    found_pages.append(key)
+
+
+    result = []
+    searchlist = list(set(found_pages))
+    page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
+    sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),searchword)  
+    pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
+    result.append({'type': 'text', 'content':sentence})
+
+    for i in pic_urls:
+        myd = {'type': 'picture','content':''}
+        myd['content'] = i
+        result.append(myd)
+
+
+    return jsonify( 
+    status=200, 
+    replies=result, 
     conversation={ 
       'memory': { 'key': 'value' } 
     } 
