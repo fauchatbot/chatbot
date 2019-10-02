@@ -161,8 +161,9 @@ def mensa():
         myd['subtitle'] = i[1]
         intermediate_list.append(myd)
 
+    print(intermediate_list)
     essen_list[0]['content']['elements'] = intermediate_list
-    print(essen_list)
+    # print(essen_list)
     return jsonify( 
     status=200, 
     replies=essen_list, 
