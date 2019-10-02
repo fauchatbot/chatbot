@@ -147,7 +147,7 @@ def mensa():
     txt = re.sub('[\n\r\xa0]', '', final_text)
     txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
-    essen_list = [{"type": "list", "content": {"elements":[]},"delay": 'null'}]
+    essen_list = [{"type": "list", "content": {"elements":[]}}]
     intermediate_list = []
 
     for i in enumerate(txt):
