@@ -168,7 +168,7 @@ def mensa():
 def search():
 
     data = json.loads(request.get_data())
-    
+    print(data)
     jarowinkler = JaroWinkler() 
 
 
