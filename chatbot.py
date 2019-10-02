@@ -148,16 +148,16 @@ def mensa():
     txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
     essen_list = ''
-    for i in txt:
-        essen_list += i + ' '
+    # for i in txt:
+    #     essen_list += i + ' '
 
-
-    print(txt)
+    sent = '\n'.join(essen_list)
+    # print(txt)
     return jsonify( 
     status=200, 
     replies=[{ 
       'type': 'text', 
-      'content': essen_list,
+      'content': sent,
     }], 
     conversation={ 
       'memory': { 'key': 'value' } 
