@@ -147,17 +147,26 @@ def mensa():
     txt = re.sub('[\n\r\xa0]', '', final_text)
     txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
-    essen_list = ''
-    # for i in txt:
-    #     essen_list += i + ' '
+    essen_list = [{"type": "list", "content": {"elements":[]},"delay": 'null'}]
+    intermediate_list = []
 
-    sent = '\n'.join(txt)
-    # print(txt)
+    for i in enumerate(txt):
+        myd =  {
+                "title": "",
+                "imageUrl": "",
+                "subtitle": "",
+                "buttons": []
+              }
+        myd['title'] = 'Essen ' + str(i[0])
+        myd['subtitle'] = i[1]
+        intermediate_list.append(myd)
+
+    essen_list[0]['content']['elements'] = intermediate_list
     return jsonify( 
     status=200, 
     replies=[{ 
       'type': 'text', 
-      'content': sent,
+      'content': essen_list,
     }], 
     conversation={ 
       'memory': { 'key': 'value' } 
