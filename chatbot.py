@@ -176,11 +176,11 @@ def mensa():
 def search():
 
     data = json.loads(request.get_data())
-    print(data)
     jarowinkler = JaroWinkler() 
 
 
     searchword = re.findall(r'"\s*(.*?)\s*"', data['nlp']['source'])[0]
+    print(searchword)
     found_pages = []
 
     for d in dict_list_bereinigt:
@@ -195,7 +195,7 @@ def search():
     page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
     sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),searchword)  
     pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
-    result.append({'type': 'text', 'content':sentence + " " + " ".join(str(i) for i in page_list)})
+    result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
 
     for i in pic_urls:
         myd = {'type': 'picture','content':''}
