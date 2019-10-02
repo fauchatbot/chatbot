@@ -187,7 +187,7 @@ def search():
     page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
     sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),searchword)  
     pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
-    result.append({'type': 'text', 'content':sentence})
+    result.append({'type': 'text', 'content':sentence + " " + " ".join(str(i) for i in page_list)})
 
     for i in pic_urls:
         myd = {'type': 'picture','content':''}
