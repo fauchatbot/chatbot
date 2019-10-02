@@ -172,7 +172,7 @@ def search():
     jarowinkler = JaroWinkler() 
 
 
-    searchword = re.findall(r"'\s*(.*?)\s*'", data['nlp']['source'])[0]
+    searchword = re.findall(r'"\s*(.*?)\s*"', data['nlp']['source'])[0]
     found_pages = []
 
     for d in dict_list_bereinigt:
