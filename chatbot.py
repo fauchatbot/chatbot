@@ -164,10 +164,7 @@ def mensa():
     essen_list[0]['content']['elements'] = intermediate_list
     return jsonify( 
     status=200, 
-    replies=[{ 
-      'type': 'text', 
-      'content': essen_list,
-    }], 
+    replies=essen_list, 
     conversation={ 
       'memory': { 'key': 'value' } 
     } 
