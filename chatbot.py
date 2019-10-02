@@ -151,7 +151,7 @@ def mensa():
     # for i in txt:
     #     essen_list += i + ' '
 
-    sent = '\n'.join(essen_list)
+    sent = '\n'.join(txt)
     # print(txt)
     return jsonify( 
     status=200, 
