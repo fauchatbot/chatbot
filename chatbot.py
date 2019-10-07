@@ -192,7 +192,7 @@ def search():
         if token.tag_ in ['NE','NNE', 'NN']:
             suchwort.append(token.text)
 
-    if len(suchwort) > 2
+    if len(suchwort) > 2:
 
         # print(searchword)
         # print(data['nlp']['source'])
