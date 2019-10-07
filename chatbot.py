@@ -27,6 +27,7 @@ def index():
 
 @app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
+    if request.method == 'POST':
         nomen = 'Not Found Page'
         data = json.loads(request.get_data())
         wikipedia.set_lang("de")
@@ -64,7 +65,8 @@ def wikipedia_search():
               'memory': { 'key': 'value' } 
             } 
           )
-     
+    else:
+        return '<h1>Wrong Address, go back to home!</h1>'        
         
 
 @app.route('/wetter', methods=['POST'])
@@ -245,7 +247,7 @@ def skript_and_wiki_search():
           'memory': { 'key': 'value' } 
         }) 
     else:
-        return redirect(url_for('wikipedia_search'))
+        return redirect(url_for('wikipedia_search'), code=307)
 
 
 @app.route('/errors', methods=['POST'])
