@@ -1,3 +1,4 @@
+import spacy
 from io import StringIO
 from dictionaries import dictionary,dict_list_bereinigt
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
