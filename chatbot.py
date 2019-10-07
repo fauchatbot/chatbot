@@ -25,46 +25,48 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-@app.route('/wikipedia', methods=['POST'])
+@app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
+    if request.method == 'POST':
+        nomen = 'Not Found Page'
+        data = json.loads(request.get_data())
+        wikipedia.set_lang("de")
+        blob = TextBlob(data['nlp']['source'])
+        liste= blob.tags
+        for l in liste:
+            if l[1] in ['NN', 'FW', 'NNS', 'NNP', 'NNPS']:
+                nomen = l[0]
+            
+        # print(nomen)
+        suchwort = nomen
 
-    nomen = 'Not Found Page'
-    data = json.loads(request.get_data())
-    wikipedia.set_lang("de")
-    blob = TextBlob(data['nlp']['source'])
-    liste= blob.tags
-    for l in liste:
-        if l[1] in ['NN', 'FW', 'NNS', 'NNP', 'NNPS']:
-            nomen = l[0]
-        
-    # print(nomen)
-    suchwort = nomen
-
-    try:
-        wikipediaseite = wikipedia.page(suchwort)
-        answer = wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
-        return jsonify( 
-        status=200, 
-        replies=[{ 
-          'type': 'text', 
-          'content': answer,
-        }], 
-        conversation={ 
-          'memory': { 'key': 'value' } 
-        } 
-      )
-        
-    except wikipedia.exceptions.DisambiguationError as e:
-        return jsonify( 
-        status=200, 
-        replies=[{ 
-          'type': 'text', 
-          'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
-        }], 
-        conversation={ 
-          'memory': { 'key': 'value' } 
-        } 
-      )        
+        try:
+            wikipediaseite = wikipedia.page(suchwort)
+            answer = wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
+            return jsonify( 
+            status=200, 
+            replies=[{ 
+              'type': 'text', 
+              'content': answer,
+            }], 
+            conversation={ 
+              'memory': { 'key': 'value' } 
+            } 
+          )
+            
+        except wikipedia.exceptions.DisambiguationError as e:
+            return jsonify( 
+            status=200, 
+            replies=[{ 
+              'type': 'text', 
+              'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
+            }], 
+            conversation={ 
+              'memory': { 'key': 'value' } 
+            } 
+          )
+    else:
+        return '<h1>Wrong Address, go back to home!</h1>'        
         
 
 @app.route('/wetter', methods=['POST'])
