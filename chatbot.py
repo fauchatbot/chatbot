@@ -14,7 +14,7 @@ import lxml
 import re
 import os
 import json
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 import nltk
 nltk.download('punkt')
 
@@ -25,7 +25,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-# @app.route('/wikipedia', methods=['POST'])
+@app.route('/wikipedia', methods=['POST'])
 def wikipedia_search():
 
     nomen = 'Not Found Page'
@@ -245,7 +245,7 @@ def skript_and_wiki_search():
           'memory': { 'key': 'value' } 
         }) 
     else:
-        wikipedia_search()
+        return redirect(url_for('wikipedia_search'()))
 
 
 @app.route('/errors', methods=['POST'])
