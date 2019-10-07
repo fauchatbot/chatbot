@@ -197,7 +197,7 @@ def search():
         if token.tag_ in ['NNP','NNPS', 'NN', 'NNS']:
             suchwort.append(token.text)
         
-    print(suchwort)
+    print(word)
     if suchwort:
         if len(suchwort) >= 2:
 
