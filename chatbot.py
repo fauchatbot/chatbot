@@ -181,7 +181,7 @@ def mensa():
 def search():
     global result
     result = []
-    # data = json.loads(request.get_data())
+    data = json.loads(request.get_data())
     jarowinkler = JaroWinkler()
     page_list = []
     suchwort = []
@@ -192,7 +192,7 @@ def search():
     nlp = spacy.load('en_core_web_sm', disable=["parser",'ner'])
 
     # ' '.join([i.capitalize() for i in 'Was ist predictive Policing'.split(' ')])
-    doc = nlp('Was ist Predictive Policing')
+    doc = nlp(data['nlp']['source'])
     for token in doc:
         if token.tag_ in ['NNP','NNPS', 'NN', 'NNS']:
             suchwort.append(token.text)
