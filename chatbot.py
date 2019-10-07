@@ -174,7 +174,7 @@ def mensa():
 
 # @app.route('/search', methods=['POST'])
 def search():
-    result = []
+    global result = []
     data = json.loads(request.get_data())
     jarowinkler = JaroWinkler() 
 
