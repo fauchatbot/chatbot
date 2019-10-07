@@ -245,7 +245,7 @@ def skript_and_wiki_search():
           'memory': { 'key': 'value' } 
         }) 
     else:
-        return redirect(url_for('wikipedia_search'()))
+        return redirect(url_for('wikipedia_search'))
 
 
 @app.route('/errors', methods=['POST'])
