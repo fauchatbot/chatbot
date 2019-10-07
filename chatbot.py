@@ -178,48 +178,48 @@ def search():
     data = json.loads(request.get_data())
     jarowinkler = JaroWinkler() 
 
-    if data['nlp']['source']:
-        # searchword = re.findall(r'"\s*(.*?)\s*"', data['nlp']['source'])[0].split(' ')
-        # print(searchword)
-        print(data['nlp']['source'])
-        # first_set = []
-        # second_set = []
-        # if len(searchword) > 1:
+    if re.findall(r'"\s*(.*?)\s*"', data['nlp']['source']):
+        searchword = re.findall(r'"\s*(.*?)\s*"', data['nlp']['source'])[0].split(' ')
+        print(searchword)
+        # print(data['nlp']['source'])
+        first_set = []
+        second_set = []
+        if len(searchword) > 1:
             
-        #     for d in dict_list_bereinigt:
-        #         for key, value in d.items():
-        #             for i in value:
-        #                 if jarowinkler.similarity(i.lower(), searchword[0].lower()) > 0.95:
-        #                     first_set.append(key)
+            for d in dict_list_bereinigt:
+                for key, value in d.items():
+                    for i in value:
+                        if jarowinkler.similarity(i.lower(), searchword[0].lower()) > 0.95:
+                            first_set.append(key)
 
-        #     for d in dict_list_bereinigt:
-        #         for key, value in d.items():
-        #             for i in value:
-        #                 if jarowinkler.similarity(i.lower(), searchword[1].lower()) > 0.95:
-        #                     second_set.append(key)
-        #     found_pages = list(set(first_set).intersection(set(second_set)))
-        # else:
-        #     for d in dict_list_bereinigt:
-        #         for key, value in d.items():
-        #             for i in value:
-        #                 if jarowinkler.similarity(i.lower(), searchword[0].lower()) > 0.95:
-        #                     first_set.append(key)
-        #     found_pages = first_set
+            for d in dict_list_bereinigt:
+                for key, value in d.items():
+                    for i in value:
+                        if jarowinkler.similarity(i.lower(), searchword[1].lower()) > 0.95:
+                            second_set.append(key)
+            found_pages = list(set(first_set).intersection(set(second_set)))
+        else:
+            for d in dict_list_bereinigt:
+                for key, value in d.items():
+                    for i in value:
+                        if jarowinkler.similarity(i.lower(), searchword[0].lower()) > 0.95:
+                            first_set.append(key)
+            found_pages = first_set
 
 
-        # result = []
-        # searchlist = list(set(found_pages))
-        # page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
-        # sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),searchword)  
-        # pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
-        # result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
+        result = []
+        searchlist = list(set(found_pages))
+        page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
+        sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),searchword)  
+        pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
+        result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
 
-        # for i in pic_urls:
-        #     myd = {'type': 'picture','content':''}
-        #     myd['content'] = i
-        #     result.append(myd)
+        for i in pic_urls:
+            myd = {'type': 'picture','content':''}
+            myd['content'] = i
+            result.append(myd)
 
-    return "Hello WOrld"
+    return result
     # return jsonify( 
     # status=200, 
     # replies=result, 
