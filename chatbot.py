@@ -188,7 +188,7 @@ def search():
     first_set = []
     second_set = []
 
-    nlp = spacy.load('en_core_web_sm')
+    nlp = spacy.load('en_core_web_sm', disable=["parser",'ner'])
 
     word = ' '.join([i.capitalize() for i in data['nlp']['source'].split(' ')])
     doc = nlp(word)
