@@ -30,6 +30,7 @@ def wikipedia_search():
     if request.method == 'POST':
         nomen = 'Not Found Page'
         data = json.loads(request.get_data())
+        print(data)
         wikipedia.set_lang("de")
         blob = TextBlob(data['nlp']['source'])
         liste= blob.tags
@@ -183,7 +184,7 @@ def search():
 
     if re.findall(r'"\s*(.*?)\s*"', data['nlp']['source']):
         searchword = re.findall(r'"\s*(.*?)\s*"', data['nlp']['source'])[0].split(' ')
-        print(searchword)
+        # print(searchword)
         # print(data['nlp']['source'])
         first_set = []
         second_set = []
