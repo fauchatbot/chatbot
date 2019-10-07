@@ -25,7 +25,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-# @app.route('/wikipedia', methods=['POST'])
+@app.route('/wikipedia', methods=['POST'])
 def wikipedia_search():
 
     nomen = 'Not Found Page'
