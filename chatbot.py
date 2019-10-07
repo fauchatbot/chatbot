@@ -189,7 +189,7 @@ def search():
     second_set = []
 
     nlp = spacy.load('de_core_news_sm')
-    doc = nlp('Was ist Predictive Policing')
+    doc = nlp(data['nlp']['source'])
     for token in doc:
         if token.tag_ in ['NE','NNE', 'NN']:
             suchwort.append(token.text)
