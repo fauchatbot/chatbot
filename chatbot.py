@@ -207,7 +207,6 @@ def search():
                             first_set.append(key)
             found_pages = first_set
 
-
         result = []
         searchlist = list(set(found_pages))
         page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
@@ -220,9 +219,9 @@ def search():
             myd['content'] = i
             result.append(myd)
         
-        if page_list == 0:
-            result = False
-    
+    if len(page_list) == 0:
+        result = False
+
     return result
     # return jsonify( 
     # status=200, 
