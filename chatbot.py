@@ -189,12 +189,14 @@ def search():
     second_set = []
 
     # nlp = spacy.load('de_core_news_sm')
-    nlp = spacy.load('en_core_web_sm', disable=["parser",'ner'])
+    nlp = spacy.load('de_core_news_sm')
+    # nlp = spacy.load('en_core_web_sm', disable=["parser",'ner'])
 
     word = ' '.join([i.capitalize() for i in data['nlp']['source'].split(' ')])
     doc = nlp(word)
     for token in doc:
-        if token.tag_ in ['NNP','NNPS', 'NN', 'NNS']:
+        # if token.tag_ in ['NNP','NNPS', 'NN', 'NNS']:
+        if token.tag_ in ['NE','NNE', 'NN']:
             suchwort.append(token.text)
         
     print(word)
