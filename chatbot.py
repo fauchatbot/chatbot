@@ -40,7 +40,7 @@ def wikipedia_search():
             
         # print(nomen)
         suchwort = nomen
-
+        print(suchwort)
         try:
             wikipediaseite = wikipedia.page(suchwort)
             answer = wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
