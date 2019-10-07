@@ -174,7 +174,7 @@ def mensa():
 
 # @app.route('/search', methods=['POST'])
 def search():
-
+    result = []
     data = json.loads(request.get_data())
     jarowinkler = JaroWinkler() 
 
@@ -218,7 +218,10 @@ def search():
             myd = {'type': 'picture','content':''}
             myd['content'] = i
             result.append(myd)
-
+        
+        if page_list == 0:
+            result = False
+    
     return result
     # return jsonify( 
     # status=200, 
@@ -233,12 +236,11 @@ def skript_and_wiki_search():
 
     data = json.loads(request.get_data())
     search()
-    global result
-    
+
     if search():
         return jsonify( 
         status=200, 
-        replies=result, 
+          replies=result, 
         conversation={ 
           'memory': { 'key': 'value' } 
         }) 
