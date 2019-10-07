@@ -233,7 +233,8 @@ def skript_and_wiki_search():
 
     data = json.loads(request.get_data())
     search()
-
+    global result
+    
     if search():
         return jsonify( 
         status=200, 
