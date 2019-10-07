@@ -184,32 +184,38 @@ def search():
     data = json.loads(request.get_data())
     jarowinkler = JaroWinkler()
     page_list = []
+    suchwort = []
 
-    if re.findall(r'"\s*(.*?)\s*"', data['nlp']['source']):
-        searchword = re.findall(r'"\s*(.*?)\s*"', data['nlp']['source'])[0].split(' ')
+    nlp = spacy.load('de_core_news_sm')
+    doc = nlp(data['nlp']['source'])
+    for token in doc:
+        if token.tag_ in ['NE','NNE', 'NN']:
+            suchwort.append(token.text)
+
+    if len(suchwort) > 2
+
         # print(searchword)
         # print(data['nlp']['source'])
         first_set = []
         second_set = []
-        if len(searchword) > 1:
             
-            for d in dict_list_bereinigt:
-                for key, value in d.items():
-                    for i in value:
-                        if jarowinkler.similarity(i.lower(), searchword[0].lower()) > 0.95:
-                            first_set.append(key)
+        for d in dict_list_bereinigt:
+            for key, value in d.items():
+                for i in value:
+                    if jarowinkler.similarity(i.lower(), searchword[-1].lower()) > 0.95:
+                        first_set.append(key)
 
             for d in dict_list_bereinigt:
                 for key, value in d.items():
                     for i in value:
-                        if jarowinkler.similarity(i.lower(), searchword[1].lower()) > 0.95:
+                        if jarowinkler.similarity(i.lower(), searchword[-2].lower()) > 0.95:
                             second_set.append(key)
             found_pages = list(set(first_set).intersection(set(second_set)))
         else:
             for d in dict_list_bereinigt:
                 for key, value in d.items():
                     for i in value:
-                        if jarowinkler.similarity(i.lower(), searchword[0].lower()) > 0.95:
+                        if jarowinkler.similarity(i.lower(), searchword[-1].lower()) > 0.95:
                             first_set.append(key)
             found_pages = first_set
 
