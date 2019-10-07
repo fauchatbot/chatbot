@@ -172,7 +172,7 @@ def mensa():
     } 
   )
 
-# @app.route('/search', methods=['POST'])
+@app.route('/search', methods=['POST'])
 def search():
 
     data = json.loads(request.get_data())
