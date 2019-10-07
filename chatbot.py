@@ -185,6 +185,8 @@ def search():
     jarowinkler = JaroWinkler()
     page_list = []
     suchwort = []
+    first_set = []
+    second_set = []
 
     nlp = spacy.load('de_core_news_sm')
     doc = nlp('Was ist Predictive Policing')
