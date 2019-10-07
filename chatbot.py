@@ -25,7 +25,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-@app.route('/wikipedia', methods=['POST'])
+# @app.route('/wikipedia', methods=['POST'])
 def wikipedia_search():
 
     nomen = 'Not Found Page'
@@ -172,7 +172,7 @@ def mensa():
     } 
   )
 
-@app.route('/search', methods=['POST'])
+# @app.route('/search', methods=['POST'])
 def search():
 
     data = json.loads(request.get_data())
@@ -239,7 +239,7 @@ def skript_and_wiki_search():
         replies=result, 
         conversation={ 
           'memory': { 'key': 'value' } 
-        }  
+        }) 
     else:
         wikipedia_search()
 
