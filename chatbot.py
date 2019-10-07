@@ -29,6 +29,7 @@ def index():
 @app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
     if request.method == 'POST':
+        wikipedia.set_lang("de")
         data = json.loads(request.get_data())
         print(data)        
         nlp = spacy.load('de_core_news_sm')
