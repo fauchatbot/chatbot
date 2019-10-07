@@ -187,42 +187,36 @@ def search():
     suchwort = []
 
     nlp = spacy.load('de_core_news_sm')
-    doc = nlp(data['nlp']['source'])
+    doc = nlp('Was ist Predictive Policing')
     for token in doc:
         if token.tag_ in ['NE','NNE', 'NN']:
             suchwort.append(token.text)
 
     if len(suchwort) > 2:
-
-        # print(searchword)
-        # print(data['nlp']['source'])
-        first_set = []
-        second_set = []
-            
         for d in dict_list_bereinigt:
             for key, value in d.items():
                 for i in value:
-                    if jarowinkler.similarity(i.lower(), searchword[-1].lower()) > 0.95:
+                    if jarowinkler.similarity(i.lower(), suchwort[-1].lower()) > 0.95:
                         first_set.append(key)
 
             for d in dict_list_bereinigt:
                 for key, value in d.items():
                     for i in value:
-                        if jarowinkler.similarity(i.lower(), searchword[-2].lower()) > 0.95:
+                        if jarowinkler.similarity(i.lower(), suchwort[-2].lower()) > 0.95:
                             second_set.append(key)
-            found_pages = list(set(first_set).intersection(set(second_set)))
-        else:
-            for d in dict_list_bereinigt:
-                for key, value in d.items():
-                    for i in value:
-                        if jarowinkler.similarity(i.lower(), searchword[-1].lower()) > 0.95:
-                            first_set.append(key)
-            found_pages = first_set
+        found_pages = list(set(first_set).intersection(set(second_set)))
+    else:
+        for d in dict_list_bereinigt:
+            for key, value in d.items():
+                for i in value:
+                    if jarowinkler.similarity(i.lower(), suchwort[-1].lower()) > 0.95:
+                        first_set.append(key)
+        found_pages = first_set
 
         result = []
         searchlist = list(set(found_pages))
         page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
-        sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),searchword)  
+        sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),suchwort)  
         pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
         result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
 
