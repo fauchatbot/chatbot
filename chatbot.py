@@ -28,18 +28,18 @@ def index():
 @app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
     if request.method == 'POST':
-        nomen = 'Not Found Page'
         data = json.loads(request.get_data())
-        print(data)
-        wikipedia.set_lang("de")
-        blob = TextBlob(data['nlp']['source'])
-        liste= blob.tags
-        for l in liste:
-            if l[1] in ['NN', 'FW', 'NNS', 'NNP', 'NNPS']:
-                nomen = l[0]
-            
-        # print(nomen)
-        suchwort = nomen
+        print(data)        
+        nlp = spacy.load('de_core_news_sm')
+        doc = nlp(data['nlp']['source'])
+        suchwort = []
+
+        for token in doc:
+            if token.tag_ in ['NE','NNE', 'NN']:
+                suchwort.append(token.text)
+
+        suchwort = ' '.join(suchwort)
+
         print(suchwort)
         try:
             wikipediaseite = wikipedia.page(suchwort)
@@ -180,7 +180,8 @@ def search():
     global result
     result = []
     data = json.loads(request.get_data())
-    jarowinkler = JaroWinkler() 
+    jarowinkler = JaroWinkler()
+    page_list = []
 
     if re.findall(r'"\s*(.*?)\s*"', data['nlp']['source']):
         searchword = re.findall(r'"\s*(.*?)\s*"', data['nlp']['source'])[0].split(' ')
