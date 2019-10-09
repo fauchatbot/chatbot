@@ -258,7 +258,7 @@ def search():
 
     replies=[{ 
     'type': 'text', 
-    'content': ,
+    'content': result,
             }]
     return replies
     # return jsonify( 
