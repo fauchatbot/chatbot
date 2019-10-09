@@ -27,7 +27,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-@app.route('/wikipedia', methods=['GET','POST'])
+# @app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
     if request.method == 'POST':
         wikipedia.set_lang("de")
@@ -47,30 +47,32 @@ def wikipedia_search():
         try:
             wikipediaseite = wikipedia.page(suchwort)
             answer = wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
-            return jsonify( 
-            status=200, 
-            replies=[{ 
-              'type': 'text', 
-              'content': answer,
-            }], 
-            conversation={ 
-              'memory': { 'key': 'value' } 
-            } 
-          )
+            return answer
+        #     return jsonify( 
+        #     status=200, 
+        #     replies=[{ 
+        #       'type': 'text', 
+        #       'content': answer,
+        #     }], 
+        #     conversation={ 
+        #       'memory': { 'key': 'value' } 
+        #     } 
+        #   )
             
         except wikipedia.exceptions.DisambiguationError as e:
-            return jsonify( 
-            status=200, 
-            replies=[{ 
-              'type': 'text', 
-              'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
-            }], 
-            conversation={ 
-              'memory': { 'key': 'value' } 
-            } 
-          )
-    else:
-        return '<h1>Wrong Address, go back to home!</h1>'        
+            return e.options
+    #         return jsonify( 
+    #         status=200, 
+    #         replies=[{ 
+    #           'type': 'text', 
+    #           'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
+    #         }], 
+    #         conversation={ 
+    #           'memory': { 'key': 'value' } 
+    #         } 
+    #       )
+    # else:
+    #     return '<h1>Wrong Address, go back to home!</h1>'        
         
 
 @app.route('/wetter', methods=['POST'])
@@ -159,7 +161,7 @@ def mensa():
     txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
     del txt[0]
-    essen_list = [{"type": "list", "content": {"elements":[]} }]
+    essen_list = [{"type": "list", "content": {"elements":[]}}]
     intermediate_list = [{"title": "Speiseplan " + heute_tag + " " + heute_zeit ,"imageUrl": "","subtitle": "","buttons": []}]
 
     for i in enumerate(txt,1):
@@ -257,17 +259,18 @@ def search():
 def skript_and_wiki_search():
 
     data = json.loads(request.get_data())
-    search()
+    print(search())
+    print(wikipedia_search())
 
-    if search():
-        return jsonify( 
-        status=200, 
-          replies=result, 
-        conversation={ 
-          'memory': { 'key': 'value' } 
-        }) 
-    else:
-        return redirect(url_for('wikipedia_search'), code=307)
+    # if search():
+    #     return jsonify( 
+    #     status=200, 
+    #       replies=result, 
+    #     conversation={ 
+    #       'memory': { 'key': 'value' } 
+    #     }) 
+    # else:
+    #     return redirect(url_for('wikipedia_search'), code=307)
 
 
 @app.route('/errors', methods=['POST'])
