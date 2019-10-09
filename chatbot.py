@@ -43,7 +43,7 @@ def wikipedia_search():
 
         suchwort = ' '.join(suchwort)
 
-        # print(suchwort)
+        print(suchwort)
         try:
             wikipediaseite = wikipedia.page(suchwort)
             answer = 'Wikipedia sagt: '
@@ -218,7 +218,7 @@ def search():
         if token.tag_ in ['NE','NNE', 'NN']:
             suchwort.append(token.text)
         
-    # print(word)
+    print(word)
     if suchwort:
         if len(suchwort) >= 2:
 
@@ -254,9 +254,12 @@ def search():
             result.append(myd)
             
     if len(page_list) == 0:
-        result = False
+        result = [False]
 
-    replies=[result]
+    replies=[{ 
+    'type': 'text', 
+    'content': ,
+            }]
     return replies
     # return jsonify( 
     # status=200, 
@@ -271,16 +274,16 @@ def skript_and_wiki_search():
 
     data = json.loads(request.get_data())
     
-    # print(wikipedia_search())
-    # print(search())
-    # result = wikipedia_search() + search()
-    # return jsonify( 
-    #         status=200, 
-    #           replies=wikipedia_search() + search(), 
-    #         conversation={ 
-    #           'memory': { 'key': 'value' } 
-    #         })
-    return 'Hello wordl'
+    print(wikipedia_search())
+    print(search())
+    result = wikipedia_search() + search()
+    return jsonify( 
+            status=200, 
+            replies=result, 
+            conversation={ 
+              'memory': { 'key': 'value' } 
+            })
+    # return 'Hello wordl'
 
     # if search():
     #     return jsonify( 
