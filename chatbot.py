@@ -47,7 +47,11 @@ def wikipedia_search():
         try:
             wikipediaseite = wikipedia.page(suchwort)
             answer = wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
-            return answer
+            replies=[{ 
+              'type': 'text', 
+              'content': answer,
+            }]
+            return replies
         #     return jsonify( 
         #     status=200, 
         #     replies=[{ 
