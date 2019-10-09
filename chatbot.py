@@ -259,9 +259,10 @@ def search():
 def skript_and_wiki_search():
 
     data = json.loads(request.get_data())
-    print(search())
+    
     print(wikipedia_search())
-
+    print(search())
+    return 'Nothing'
     # if search():
     #     return jsonify( 
     #     status=200, 
