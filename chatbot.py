@@ -1,3 +1,4 @@
+from datetime import datetime, date
 import spacy
 from io import StringIO
 from dictionaries import dictionary,dict_list_bereinigt
@@ -146,6 +147,11 @@ def news():
 
 @app.route('/mensa')
 def mensa():
+    weekdays = {6:'Sonntag', 0:'Monntag', 1:'Dienstag', 2:'Mittwoch', 3:'Donnerstag', 4:'Freitag', 5:'Samstag'}
+    datetime.today().weekday()
+    heute_tag = weekdays[datetime.today().weekday()]
+    heute_zeit = date.today().strftime("%d.%m.%Y")
+
     result = requests.get('https://www.werkswelt.de/index.php?id=isch')
     text = soup(result.content, 'lxml')
     final_text = text.findAll("div", {"style": 'background-color:#ecf0f1;border-radius: 4px 4px 0px 0px; padding: 8px;'})[0].get_text()
@@ -153,7 +159,7 @@ def mensa():
     txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
     essen_list = [{"type": "list", "content": {"elements":[]} }]
-    intermediate_list = []
+    intermediate_list = [{"title": "Speiseplan " + heute + " " + heute_zeit ,"imageUrl": "","subtitle": "","buttons": []}]
 
     for i in enumerate(txt,1):
         myd =  {
@@ -225,7 +231,7 @@ def search():
 
         searchlist = list(set(found_pages))
         page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
-        sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),suchwort)  
+        sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),' '.join(suchwort))  
         pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
         result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
 
