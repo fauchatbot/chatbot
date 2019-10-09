@@ -254,12 +254,9 @@ def search():
             result.append(myd)
             
     if len(page_list) == 0:
-        result = [False]
+        result = [{'type': 'text','content': False}]
 
-    replies=[{ 
-    'type': 'text', 
-    'content': result,
-            }]
+    replies=result
     return replies
     # return jsonify( 
     # status=200, 
