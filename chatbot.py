@@ -158,6 +158,7 @@ def mensa():
     txt = re.sub('[\n\r\xa0]', '', final_text)
     txt = re.sub(' +', ' ',txt)
     txt = re.split('Essen [1-9]', txt)
+    del txt[0]
     essen_list = [{"type": "list", "content": {"elements":[]} }]
     intermediate_list = [{"title": "Speiseplan " + heute_tag + " " + heute_zeit ,"imageUrl": "","subtitle": "","buttons": []}]
 
