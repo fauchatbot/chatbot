@@ -32,7 +32,7 @@ def wikipedia_search():
     if request.method == 'POST':
         wikipedia.set_lang("de")
         data = json.loads(request.get_data())
-        print(data)        
+        # print(data)        
         nlp = spacy.load('de_core_news_sm')
         doc = nlp(data['nlp']['source'])
         suchwort = []
@@ -43,7 +43,7 @@ def wikipedia_search():
 
         suchwort = ' '.join(suchwort)
 
-        print(suchwort)
+        # print(suchwort)
         try:
             wikipediaseite = wikipedia.page(suchwort)
             answer = 'Wikipedia sagt: '
@@ -218,7 +218,7 @@ def search():
         if token.tag_ in ['NE','NNE', 'NN']:
             suchwort.append(token.text)
         
-    print(word)
+    # print(word)
     if suchwort:
         if len(suchwort) >= 2:
 
@@ -272,14 +272,15 @@ def skript_and_wiki_search():
     data = json.loads(request.get_data())
     
     # print(wikipedia_search())
-    print(search())
-    # return jsonify( 
-    #         status=200, 
-    #           replies=wikipedia_search() + search(), 
-    #         conversation={ 
-    #           'memory': { 'key': 'value' } 
-    #         })
-    return 'Hello wordl'
+    # print(search())
+    result = wikipedia_search() + search()
+    return jsonify( 
+            status=200, 
+              replies=wikipedia_search() + search(), 
+            conversation={ 
+              'memory': { 'key': 'value' } 
+            })
+    # return 'Hello wordl'
 
     # if search():
     #     return jsonify( 
