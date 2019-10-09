@@ -270,7 +270,7 @@ def skript_and_wiki_search():
 
     data = json.loads(request.get_data())
     
-    print(wikipedia_search())
+    # print(wikipedia_search())
     print(search())
     return jsonify( 
             status=200, 
