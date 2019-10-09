@@ -46,7 +46,8 @@ def wikipedia_search():
         print(suchwort)
         try:
             wikipediaseite = wikipedia.page(suchwort)
-            answer = wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
+            answer = 'Wikipedia sagt: '
+            answer += wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
             replies=[{ 
               'type': 'text', 
               'content': answer,
@@ -64,7 +65,12 @@ def wikipedia_search():
         #   )
             
         except wikipedia.exceptions.DisambiguationError as e:
-            return e.options
+            replies=[{ 
+              'type': 'text', 
+              'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
+            }]
+            return replies
+            # return e.options
     #         return jsonify( 
     #         status=200, 
     #         replies=[{ 
@@ -238,7 +244,7 @@ def search():
 
         searchlist = list(set(found_pages))
         page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
-        sentence = "Ich habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),' '.join(suchwort))  
+        sentence = "Außerdem habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),' '.join(suchwort))  
         pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
         result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
 
