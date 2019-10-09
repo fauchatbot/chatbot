@@ -256,7 +256,11 @@ def search():
     if len(page_list) == 0:
         result = False
 
-    return result
+    replies=result, 
+    conversation={ 
+      'memory': { 'key': 'value' } 
+    }
+    return replies
     # return jsonify( 
     # status=200, 
     # replies=result, 
