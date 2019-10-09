@@ -67,7 +67,7 @@ def wikipedia_search():
         except wikipedia.exceptions.DisambiguationError as e:
             replies=[{ 
               'type': 'text', 
-              'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
+              'content': "Wikipedia sagt: Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
             }]
             return replies
             # return e.options
