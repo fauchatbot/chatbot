@@ -266,7 +266,13 @@ def skript_and_wiki_search():
     
     print(wikipedia_search())
     print(search())
-    return 'Nothing'
+    return jsonify( 
+            status=200, 
+              replies=wikipedia_search() + search(), 
+            conversation={ 
+              'memory': { 'key': 'value' } 
+            })
+
     # if search():
     #     return jsonify( 
     #     status=200, 
