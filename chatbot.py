@@ -28,7 +28,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-@app.route('/wikipedia', methods=['GET','POST'])
+# @app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
     if request.method == 'POST':
         wikipedia.set_lang("de")
@@ -54,15 +54,6 @@ def wikipedia_search():
               'content': answer,
             }]
             return replies
-
-result = wikipedia_search()
-print(result)
-return jsonify( 
-status=200, 
-replies=result, 
-conversation={ 
-'memory': { 'key': 'value' } 
- })
         #     return jsonify( 
         #     status=200, 
         #     replies=[{ 
