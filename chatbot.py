@@ -48,7 +48,7 @@ def wikipedia_search():
         try:
             wikipediaseite = wikipedia.page(suchwort)
             answer = 'Wikipedia sagt: '
-            answer += wikipedia.summary(suchwort, sentences=3) + " Weiterlesen? " + wikipediaseite.url
+            answer += wikipedia.summary(suchwort, sentences=3) + " [Weiterlesen?]( " + wikipediaseite.url+")"
             replies=[{ 
               'type': 'text', 
               'content': answer,
