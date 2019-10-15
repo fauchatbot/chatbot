@@ -245,7 +245,7 @@ def search():
 
         searchlist = list(set(found_pages))
         page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
-        sentence = "Außerdem habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),' '.join(suchwort))  
+        sentence = "Außerdem habe ich {} Seite(n) im Skript mit {} finden können".format(len(page_list),' '.join(suchwort))  
         pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
         result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
 
