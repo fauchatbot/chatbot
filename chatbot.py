@@ -28,7 +28,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-# @app.route('/wikipedia', methods=['GET','POST'])
+#@app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
     if request.method == 'POST':
         wikipedia.set_lang("de")
@@ -71,7 +71,7 @@ def wikipedia_search():
               'content': "Wikipedia sagt: Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
             }]
             return replies
-            # return e.options
+        # return e.options
     #         return jsonify( 
     #         status=200, 
     #         replies=[{ 
