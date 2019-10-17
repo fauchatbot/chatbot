@@ -1,4 +1,3 @@
-import sys
 from datetime import datetime, date
 import spacy
 from io import StringIO
@@ -28,7 +27,7 @@ port = int(os.environ["PORT"])
 def index():
     return 'Home Page'
 
-#@app.route('/wikipedia', methods=['GET','POST'])
+@app.route('/wikipedia', methods=['GET','POST'])
 def wikipedia_search():
     if request.method == 'POST':
         wikipedia.set_lang("de")
@@ -48,42 +47,42 @@ def wikipedia_search():
         try:
             wikipediaseite = wikipedia.page(suchwort)
             answer = 'Wikipedia sagt: '
-            answer += wikipedia.summary(suchwort, sentences=3) + " [Weiterlesen?]( " + wikipediaseite.url+")"
+            answer += wikipedia.summary(suchwort, sentences=5) + " Weiterlesen? " + wikipediaseite.url
+            # replies=[{ 
+            #   'type': 'text', 
+            #   'content': answer,
+            # }]
+            # return replies
+            return jsonify( 
+            status=200, 
             replies=[{ 
               'type': 'text', 
               'content': answer,
-            }]
-            return replies
-        #     return jsonify( 
-        #     status=200, 
-        #     replies=[{ 
-        #       'type': 'text', 
-        #       'content': answer,
-        #     }], 
-        #     conversation={ 
-        #       'memory': { 'key': 'value' } 
-        #     } 
-        #   )
+            }], 
+            conversation={ 
+              'memory': { 'key': 'value' } 
+            } 
+          )
             
         except wikipedia.exceptions.DisambiguationError as e:
+            # replies=[{ 
+            #   'type': 'text', 
+            #   'content': "Wikipedia sagt: Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
+            # }]
+            # return replies
+            return e.options
+            return jsonify( 
+            status=200, 
             replies=[{ 
               'type': 'text', 
-              'content': "Wikipedia sagt: Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
-            }]
-            return replies
-        # return e.options
-    #         return jsonify( 
-    #         status=200, 
-    #         replies=[{ 
-    #           'type': 'text', 
-    #           'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
-    #         }], 
-    #         conversation={ 
-    #           'memory': { 'key': 'value' } 
-    #         } 
-    #       )
-    # else:
-    #     return '<h1>Wrong Address, go back to home!</h1>'        
+              'content': "Ich konnte leider keinen Eintrag zu dem Wort '"+suchwort+"' finden. Vielleicht meinst du eins der folgenden Worte "+ str(e.options)+"? Wenn ja, gib deine Frage nochmal mit dem richtigen Wort ein.",
+            }], 
+            conversation={ 
+              'memory': { 'key': 'value' } 
+            } 
+          )
+    else:
+        return '<h1>Wrong Address, go back to home!</h1>'        
         
 
 @app.route('/wetter', methods=['POST'])
@@ -197,7 +196,7 @@ def mensa():
     } 
   )
 
-# @app.route('/search', methods=['POST'])
+@app.route('/search', methods=['POST'])
 def search():
     global result
     result = []
@@ -245,7 +244,7 @@ def search():
 
         searchlist = list(set(found_pages))
         page_list = [int(i[0]) for i in [i.split('.') for i in searchlist]]
-        sentence = "Außerdem habe ich {} Seite(n) im Skript mit {} finden können".format(len(page_list),' '.join(suchwort))  
+        sentence = "Außerdem habe {} Seite(n) im Skript mit {} finden können".format(len(page_list),' '.join(suchwort))  
         pic_urls = [dictionary[sorted(searchlist)[i]] for i in range(0,len(searchlist),3)]    
         result.append({'type': 'text', 'content':sentence + ". Hier sind ein paar Beispiele " + " ".join(str(i) for i in sorted(page_list))})
 
@@ -258,29 +257,30 @@ def search():
         result = [{'type': 'text','content': False}]
 
     replies=result
-    return replies
-    # return jsonify( 
-    # status=200, 
-    # replies=result, 
-    # conversation={ 
-    #   'memory': { 'key': 'value' } 
-    # } 
-  # )
-
-@app.route('/skript_and_wiki_search', methods=['POST'])
-def skript_and_wiki_search():
-
-    data = json.loads(request.get_data())
-    
-    print(wikipedia_search())
-    print(search())
-    result = wikipedia_search() + search()
+    # return replies
     return jsonify( 
-            status=200, 
-            replies=result, 
-            conversation={ 
-              'memory': { 'key': 'value' } 
-            })
+    status=200, 
+    replies=result, 
+    conversation={ 
+      'memory': { 'key': 'value' } 
+    } 
+  )
+
+
+# @app.route('/skript_and_wiki_search', methods=['POST'])
+# def skript_and_wiki_search():
+
+#     data = json.loads(request.get_data())
+    
+#     print(wikipedia_search())
+#     print(search())
+#     result = wikipedia_search() + search()
+#     return jsonify( 
+#             status=200, 
+#             replies=result, 
+#             conversation={ 
+#               'memory': { 'key': 'value' } 
+#             })
     # return 'Hello wordl'
 
     # if search():
