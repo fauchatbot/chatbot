@@ -254,7 +254,7 @@ def search():
             result.append(myd)
             
     if len(page_list) == 0:
-        result = [{'type': 'text','content': False}]
+        result = [{'type': 'text','content': 'No such a word as {} in Skript'.format(suchwort)}]
 
     replies=result
     # return replies
