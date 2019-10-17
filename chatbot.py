@@ -254,7 +254,7 @@ def search():
             result.append(myd)
             
     if len(page_list) == 0:
-        result = [{'type': 'text','content': 'No such a word as {} in Skript'.format(suchwort)}]
+        result = [{'type': 'text','content': 'Ich konnte nichts im Skript zum Wort {} finden'.format(suchwort[0])}]
 
     replies=result
     # return replies
@@ -266,7 +266,20 @@ def search():
     } 
   )
 
-
+@app.route('/zeit')
+def zeit():
+    now = str(datetime.now()).split(' ')[1].split('.')[0][:5]
+    time_str = 'Je noch dem wo du gerade bist... \n In Nürnberg ist es gerade {}'.format(now)
+    return jsonify( 
+            status=200, 
+            replies=[{ 
+            'type': 'text', 
+            'content':time_str,
+            }], 
+            conversation={ 
+            'memory': { 'key': 'value' } 
+            } 
+        )
 # @app.route('/skript_and_wiki_search', methods=['POST'])
 # def skript_and_wiki_search():
 
