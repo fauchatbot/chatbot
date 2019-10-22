@@ -1,4 +1,4 @@
-Flask==0.12.2
+Flask==1.0
 requests==2.18.4
 sapcai ==4.0.0
 psycopg2 ==2.8.3
