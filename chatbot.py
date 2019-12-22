@@ -172,7 +172,7 @@ def mensa():
     txt = re.split('Essen [1-9]', txt)
     del txt[0]
     essen_list = [{"type": "list", "content": {"elements":[]}}]
-    intermediate_list = [{"title": "1 Speiseplan " + heute_tag + " " + heute_zeit ,"imageUrl": "","subtitle": "","buttons": []}]
+    intermediate_list = [{"title": "123 Speiseplan " + heute_tag + " " + heute_zeit ,"imageUrl": "","subtitle": "","buttons": []}]
 
     for i in enumerate(txt,1):
         myd =  {
