@@ -285,7 +285,7 @@ def zeit():
 @app.route('/abfrage')
 def abfrage():
    
-    index_frage=int(randint(1,38)*2) 
+    index_frage=int(random.randint(1,38)*2) 
     index_antwort=int(index_frage+1)
     print(index_antwort)
     return jsonify( 
