@@ -293,7 +293,7 @@ def abfrage():
             # 'content':city,
             'content': frage_projektmanagement[0],
             'delay': 5
-            }
+            },
             {'type': 'picture', 
             # 'content':city,
             'content': antwort_projektmanagement[0]
