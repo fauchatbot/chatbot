@@ -1,7 +1,7 @@
 from datetime import datetime, date
 import spacy
 from io import StringIO
-from dictionaries import dictionary,dict_list_bereinigt
+from dictionaries import dictionary,dict_list_bereinigt, list_pm
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
 import urllib
 from textblob_de import TextBlobDE as TextBlob
@@ -284,19 +284,19 @@ def zeit():
 @app.route('/abfrage')
 def abfrage():
    
-     frage_projektmanagement=['https://abload.de/img/0002c3jxh.jpg', 'https://abload.de/thumb/0004muk3f.jpg ', 'https://abload.de/thumb/00060mjrt.jpg ', 'https://abload.de/thumb/0008fwkei.jpg ', 'https://abload.de/thumb/0010uhk4b.jpg ', 'https://abload.de/thumb/0012y2jqk.jpg ', 'https://abload.de/thumb/0014u3jd8.jpg ', 'https://abload.de/thumb/0016uhjjc.jpg ', 'https://abload.de/thumb/0018s3kkj.jpg ']
-     antwort_projektmanagement=['https://abload.de/img/0003l1jgv.jpg ', 'https://abload.de/thumb/0005lck8a.jpg ', 'https://abload.de/thumb/000763k56.jpg ', 'https://abload.de/thumb/000986kvf.jpg ', 'https://abload.de/thumb/0011pqj2p.jpg ', 'https://abload.de/thumb/00135wjor.jpg ', 'https://abload.de/thumb/00156mjn7.jpg ', 'https://abload.de/thumb/001719k52.jpg ', 'https://abload.de/thumb/0019ppjt3.jpg ']
-     return jsonify( 
+    index_frage=randint(1, 38)*2 
+    index_antwort=index_frage+1
+    return jsonify( 
             status=200, 
             replies=[{ 
             'type': 'picture', 
             # 'content':city,
-            'content': frage_projektmanagement[0],
+            'content': list_pm[index_frage],
             'delay': 5
             },
             {'type': 'picture', 
             # 'content':city,
-            'content': antwort_projektmanagement[0]
+            'content': list_pm[index_antwort]
             }], 
             conversation={ 
             'memory': { 'key': 'value' } 
