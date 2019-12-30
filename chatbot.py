@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup as soup
 import lxml
 import re
 import os
+import random
 import json
 from flask import Flask, jsonify, request, redirect, url_for
 import nltk
