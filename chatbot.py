@@ -284,14 +284,18 @@ def zeit():
 @app.route('/abfrage')
 def abfrage():
    
-     frage_projektmanagement=['https://abload.de/thumb/0002rxjw4.jpg ', 'https://abload.de/thumb/0004muk3f.jpg ', 'https://abload.de/thumb/00060mjrt.jpg ', 'https://abload.de/thumb/0008fwkei.jpg ', 'https://abload.de/thumb/0010uhk4b.jpg ', 'https://abload.de/thumb/0012y2jqk.jpg ', 'https://abload.de/thumb/0014u3jd8.jpg ', 'https://abload.de/thumb/0016uhjjc.jpg ', 'https://abload.de/thumb/0018s3kkj.jpg ']
-     antwort_projektmanagement=['https://abload.de/thumb/0003shkiu.jpg ', 'https://abload.de/thumb/0005lck8a.jpg ', 'https://abload.de/thumb/000763k56.jpg ', 'https://abload.de/thumb/000986kvf.jpg ', 'https://abload.de/thumb/0011pqj2p.jpg ', 'https://abload.de/thumb/00135wjor.jpg ', 'https://abload.de/thumb/00156mjn7.jpg ', 'https://abload.de/thumb/001719k52.jpg ', 'https://abload.de/thumb/0019ppjt3.jpg ']
+     frage_projektmanagement=['https://abload.de/img/0002c3jxh.jpg', 'https://abload.de/thumb/0004muk3f.jpg ', 'https://abload.de/thumb/00060mjrt.jpg ', 'https://abload.de/thumb/0008fwkei.jpg ', 'https://abload.de/thumb/0010uhk4b.jpg ', 'https://abload.de/thumb/0012y2jqk.jpg ', 'https://abload.de/thumb/0014u3jd8.jpg ', 'https://abload.de/thumb/0016uhjjc.jpg ', 'https://abload.de/thumb/0018s3kkj.jpg ']
+     antwort_projektmanagement=['https://abload.de/img/0003l1jgv.jpg ', 'https://abload.de/thumb/0005lck8a.jpg ', 'https://abload.de/thumb/000763k56.jpg ', 'https://abload.de/thumb/000986kvf.jpg ', 'https://abload.de/thumb/0011pqj2p.jpg ', 'https://abload.de/thumb/00135wjor.jpg ', 'https://abload.de/thumb/00156mjn7.jpg ', 'https://abload.de/thumb/001719k52.jpg ', 'https://abload.de/thumb/0019ppjt3.jpg ']
      return jsonify( 
             status=200, 
             replies=[{ 
             'type': 'picture', 
             # 'content':city,
-            'content': frage_projektmanagement[0]
+            'content': frage_projektmanagement[0],
+            'delay': 5
+            }], [{'type': 'picture', 
+            # 'content':city,
+            'content': antwort_projektmanagement[0]
             }], 
             conversation={ 
             'memory': { 'key': 'value' } 
