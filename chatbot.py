@@ -280,6 +280,21 @@ def zeit():
             'memory': { 'key': 'value' } 
             } 
         )
+
+@app.route('/abfrage')
+def abfrage():
+    
+     return jsonify( 
+            status=200, 
+            replies=[{ 
+            'type': 'text', 
+            # 'content':city,
+            'content': "Was ist ein Bitcoin?.",
+            }], 
+            conversation={ 
+            'memory': { 'key': 'value' } 
+            } 
+        )
 # @app.route('/skript_and_wiki_search', methods=['POST'])
 # def skript_and_wiki_search():
 
