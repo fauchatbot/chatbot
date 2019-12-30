@@ -293,12 +293,12 @@ def abfrage():
             replies=[{ 
             'type': 'picture', 
             # 'content':city,
-            'content': list_pm[14],
+            'content': list_pm[index_frage],
             'delay': 5
             },
             {'type': 'picture', 
             # 'content':city,
-            'content': list_pm[15]
+            'content': list_pm[index_antwort]
             }], 
             conversation={ 
             'memory': { 'key': 'value' } 
