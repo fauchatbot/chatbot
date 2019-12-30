@@ -18,6 +18,7 @@ import os
 import json
 from flask import Flask, jsonify, request, redirect, url_for
 import nltk
+import random
 nltk.download('punkt')
 
 app = Flask(__name__)
