@@ -284,19 +284,19 @@ def zeit():
 @app.route('/abfrage')
 def abfrage():
    
-    #index_frage=randint(1, 38)*2 
-    #index_antwort=index_frage+1
+    index_frage=randint(1, 38)*2 
+    index_antwort=index_frage+1
     return jsonify( 
             status=200, 
             replies=[{ 
             'type': 'picture', 
             # 'content':city,
-            'content': list_pm[5],
+            'content': list_pm[index_frage],
             'delay': 5
             },
             {'type': 'picture', 
             # 'content':city,
-            'content': list_pm[6]
+            'content': list_pm[index_antwort]
             }], 
             conversation={ 
             'memory': { 'key': 'value' } 
