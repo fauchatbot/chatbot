@@ -868,7 +868,6 @@ list_pm= [
  'https://abload.de/img/0064esk53.jpg ',
  'https://abload.de/img/00651wjtu.jpg ',
  'https://abload.de/img/0066m5jtv.jpg ',
- 'https://abload.de/img/0067lgkoh.jpg ',
  'https://abload.de/img/0068x7kr2.jpg ',
  'https://abload.de/img/0069jdkca.jpg ',
  'https://abload.de/img/0070wrk4m.jpg ',
