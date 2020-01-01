@@ -288,8 +288,8 @@ def abfrage():
     #print(data['nlp'])
     global result
     result = []
-    data = json.loads(request.get_data())
-    print(data['nlp']['source'])
+    #data = json.loads(request.get_data())
+    #print(data['nlp']['source'])
     for i in range(3):
       index_frage=int(random.randint(0,38)*2) 
       index_antwort=int(index_frage+1)
