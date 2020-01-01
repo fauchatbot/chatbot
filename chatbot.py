@@ -291,7 +291,7 @@ def abfrage():
     data = json.loads(request.get_data())
     print(data["nlp"])
     print(data['conversation']['memory']['thema'])
-    thema=data['conversation']['memory']['thema'] # thema
+    thema=data['conversation']['memory']['thema']['raw'] # thema
     anzahl_fragen=int(data['nlp']['source'])
     for i in range(anzahl_fragen):
         if thema in ['Projektmanagement','projektmanagement','projectmanagement']:
