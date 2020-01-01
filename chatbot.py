@@ -282,7 +282,7 @@ def zeit():
             } 
         )
 
-@app.route('/abfrage',methods=['POST'])
+@app.route('/abfrage', methods=['GET','POST'])
 def abfrage():
     #data = json.loads(request.get_data())
     #print(data['nlp'])
