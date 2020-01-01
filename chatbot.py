@@ -300,7 +300,7 @@ def abfrage():
 
       result.append(myd_frage)
       result.append(myd_antwort)
-    
+    result.append({'type': 'message','content': data['nlp']})
     replies=result
     # return replies
     return jsonify( 
