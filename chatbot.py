@@ -285,25 +285,30 @@ def zeit():
 @app.route('/abfrage')
 def abfrage():
    
-    index_frage=int(random.randint(1,38)*2) 
-    index_antwort=int(index_frage+1)
-    print(index_antwort)
+    global result
+    result = []
+    for i in range(3):
+          index_frage=int(random.randint(0,38)*2) 
+          index_antwort=int(index_frage+1)
+          myd_frage={"":""}
+          myd_antwort={"":""}
+          myd_frage = {'type': 'picture','content':''}
+          myd_frage['content'] = list_pm[index_frage]
+          myd_antwort = {'type': 'picture','content':'','delay': 5}
+          myd_antwort['content'] = list_pm[index_antwort]
+
+          result.append(myd_frage)
+          result.append(myd_antwort)
+    
+    replies=result
+    # return replies
     return jsonify( 
-            status=200, 
-            replies=[{ 
-            'type': 'picture', 
-            # 'content':city,
-            'content': list_pm[index_frage],
-            'delay': 5
-            },
-            {'type': 'picture', 
-            # 'content':city,
-            'content': list_pm[index_antwort]
-            }], 
-            conversation={ 
-            'memory': { 'key': 'value' } 
-            } 
-        )
+    status=200, 
+    replies=result, 
+    conversation={ 
+      'memory': { 'key': 'value' } 
+    } 
+  )
 # @app.route('/skript_and_wiki_search', methods=['POST'])
 # def skript_and_wiki_search():
 
