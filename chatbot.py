@@ -290,6 +290,7 @@ def abfrage():
     result = []
     data = json.loads(request.get_data())
     print(data["nlp"])
+    print(data['conversation']['memory']['thema'])
     thema=data['conversation']['memory']['thema'] # thema
     anzahl_fragen=int(data['nlp']['source'])
     for i in range(anzahl_fragen):
