@@ -288,17 +288,17 @@ def abfrage():
     global result
     result = []
     for i in range(3):
-          index_frage=int(random.randint(0,38)*2) 
-          index_antwort=int(index_frage+1)
-          myd_frage={"":""}
-          myd_antwort={"":""}
-          myd_frage = {'type': 'picture','content':''}
-          myd_frage['content'] = list_pm[index_frage]
-          myd_antwort = {'type': 'picture','content':'','delay': 5}
-          myd_antwort['content'] = list_pm[index_antwort]
+      index_frage=int(random.randint(0,38)*2) 
+      index_antwort=int(index_frage+1)
+      myd_frage={"":""}
+      myd_antwort={"":""}
+      myd_frage = {'type': 'picture','content':'','delay': 5}
+      myd_frage['content'] = list_pm[index_frage]
+      myd_antwort = {'type': 'picture','content':''}
+      myd_antwort['content'] = list_pm[index_antwort]
 
-          result.append(myd_frage)
-          result.append(myd_antwort)
+      result.append(myd_frage)
+      result.append(myd_antwort)
     
     replies=result
     # return replies
