@@ -290,7 +290,7 @@ def abfrage():
     result = []
     data = json.loads(request.get_data())
     print(data["nlp"])
-    print(data['conversation']['memory']['thema'])
+    print(data['conversation']['memory']['thema']['raw'])
     thema=data['conversation']['memory']['thema']['raw'] # thema
     anzahl_fragen=int(data['nlp']['source'])
     for i in range(anzahl_fragen):
@@ -306,7 +306,7 @@ def abfrage():
 
             result.append(myd_frage)
             result.append(myd_antwort)
-        if thema in ['socialmedia','Socialmedia','SocialMedia']:
+        if thema in ['socialmedia','Socialmedia','SocialMedia','SocialMedia']:
             index_frage=int(random.randint(0,25)*2) 
             index_antwort=int(index_frage+1)
             myd_frage={"":""}
