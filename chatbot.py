@@ -292,7 +292,7 @@ def abfrage():
     print(data["nlp"]["entities"])
     anzahl_fragen=int(data['nlp']['source'])
     for i in range(anzahl_fragen):
-      index_frage=int(random.randint(0,38)*2) 
+      index_frage=int(random.randint(0,36)*2) 
       index_antwort=int(index_frage+1)
       myd_frage={"":""}
       myd_antwort={"":""}
