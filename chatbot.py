@@ -318,7 +318,7 @@ def abfrage():
 
             result.append(myd_frage)
             result.append(myd_antwort)
-   replies=result
+    replies=result
     # return replies
     return jsonify( 
     status=200, 
