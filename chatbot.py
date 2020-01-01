@@ -337,7 +337,7 @@ def abfrage():
     #     return redirect(url_for('wikipedia_search'), code=307)
 
 
-@app.route('/errors', methods=['POST'])
+@app.route('/errors',methods=['GET','POST'])
 def errors():
     print(json.loads(request.get_data()))
     return jsonify(status=200)
