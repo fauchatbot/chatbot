@@ -1,7 +1,7 @@
 from datetime import datetime, date
 import spacy
 from io import StringIO
-from dictionaries import dictionary,dict_list_bereinigt, list_pm
+from dictionaries import dictionary,dict_list_bereinigt, list_pm, list_socialmedia
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
 import urllib
 from textblob_de import TextBlobDE as TextBlob
