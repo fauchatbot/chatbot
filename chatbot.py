@@ -284,7 +284,8 @@ def zeit():
 
 @app.route('/abfrage')
 def abfrage():
-   
+    data = json.loads(request.get_data())
+    print(data['nlp'])
     global result
     result = []
     for i in range(3):
