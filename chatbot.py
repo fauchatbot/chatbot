@@ -294,7 +294,7 @@ def abfrage():
       myd_antwort={"":""}
       myd_frage = {'type': 'picture','content':'','delay': 5}
       myd_frage['content'] = list_pm[index_frage]
-      myd_antwort = {'type': 'picture','content':'','delay': 2}
+      myd_antwort = {'type': 'picture','content':'','delay': 4}
       myd_antwort['content'] = list_pm[index_antwort]
 
       result.append(myd_frage)
