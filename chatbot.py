@@ -282,7 +282,7 @@ def zeit():
             } 
         )
 
-@app.route('/abfrage', methods=['POST'])
+@app.route('/abfrage',methods=['GET','POST'])
 def abfrage():
     data = json.loads(request.get_data())
     print(data['nlp'])
@@ -337,7 +337,7 @@ def abfrage():
     #     return redirect(url_for('wikipedia_search'), code=307)
 
 
-@app.route('/errors',methods=['GET','POST'])
+@app.route('/errors',methods=['POST'])
 def errors():
     print(json.loads(request.get_data()))
     return jsonify(status=200)
