@@ -290,21 +290,33 @@ def abfrage():
     result = []
     data = json.loads(request.get_data())
     print(data["nlp"])
-    print(data['conversation']['memory']['thema'])
+    thema=data['conversation']['memory']['thema'] # thema
     anzahl_fragen=int(data['nlp']['source'])
     for i in range(anzahl_fragen):
-      index_frage=int(random.randint(0,36)*2) 
-      index_antwort=int(index_frage+1)
-      myd_frage={"":""}
-      myd_antwort={"":""}
-      myd_frage = {'type': 'picture','content':'','delay': 5}
-      myd_frage['content'] = list_pm[index_frage]
-      myd_antwort = {'type': 'picture','content':'','delay': 4}
-      myd_antwort['content'] = list_pm[index_antwort]
+      if thema in ['Projektmanagement','projektmanagement','projectmanagement']:
+        index_frage=int(random.randint(0,36)*2) 
+        index_antwort=int(index_frage+1)
+        myd_frage={"":""}
+        myd_antwort={"":""}
+        myd_frage = {'type': 'picture','content':'','delay': 5}
+        myd_frage['content'] = list_pm[index_frage]
+        myd_antwort = {'type': 'picture','content':'','delay': 4}
+        myd_antwort['content'] = list_pm[index_antwort]
 
-      result.append(myd_frage)
-      result.append(myd_antwort)
-    
+        result.append(myd_frage)
+        result.append(myd_antwort)
+     if thema in ['socialmedia','Socialmedia','SocialMedia']:
+        index_frage=int(random.randint(0,25)*2) 
+        index_antwort=int(index_frage+1)
+        myd_frage={"":""}
+        myd_antwort={"":""}
+        myd_frage = {'type': 'picture','content':'','delay': 5}
+        myd_frage['content'] = list_socialmedia[index_frage]
+        myd_antwort = {'type': 'picture','content':'','delay': 4}
+        myd_antwort['content'] = list_socialmedia[index_antwort]
+
+        result.append(myd_frage)
+        result.append(myd_antwort)
     replies=result
     # return replies
     return jsonify( 
