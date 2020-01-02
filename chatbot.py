@@ -318,6 +318,18 @@ def abfrage():
 
             result.append(myd_frage)
             result.append(myd_antwort)
+        if thema in ['Technologiemanagement','technologiemanagement','TechnologieManagement']:
+            index_frage=int(random.randint(0,35)*2) 
+            index_antwort=int(index_frage+1)
+            myd_frage={"":""}
+            myd_antwort={"":""}
+            myd_frage = {'type': 'picture','content':'','delay': 5}
+            myd_frage['content'] = list_socialmedia[index_frage]
+            myd_antwort = {'type': 'picture','content':'','delay': 4}
+            myd_antwort['content'] = list_socialmedia[index_antwort]
+
+            result.append(myd_frage)
+            result.append(myd_antwort)
     replies=result
     # return replies
     return jsonify( 
