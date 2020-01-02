@@ -1,7 +1,7 @@
 from datetime import datetime, date
 import spacy
 from io import StringIO
-from dictionaries import dictionary,dict_list_bereinigt, list_pm, list_socialmedia
+from dictionaries import dictionary,dict_list_bereinigt, list_pm, list_socialmedia, list_technologiemanagement
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
 import urllib
 from textblob_de import TextBlobDE as TextBlob
@@ -324,9 +324,9 @@ def abfrage():
             myd_frage={"":""}
             myd_antwort={"":""}
             myd_frage = {'type': 'picture','content':'','delay': 5}
-            myd_frage['content'] = list_socialmedia[index_frage]
+            myd_frage['content'] = list_technologiemanagement[index_frage]
             myd_antwort = {'type': 'picture','content':'','delay': 4}
-            myd_antwort['content'] = list_socialmedia[index_antwort]
+            myd_antwort['content'] = list_technologiemanagement[index_antwort]
 
             result.append(myd_frage)
             result.append(myd_antwort)
