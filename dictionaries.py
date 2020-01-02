@@ -882,7 +882,7 @@ list_pm= [
 
 
 list_socialmedia= [
-['https://abload.de/img/0001hukn2.jpg ',
+'https://abload.de/img/0001hukn2.jpg ',
  'https://abload.de/img/0002maj19.jpg ',
  'https://abload.de/img/0003d8j6t.jpg ',
  'https://abload.de/img/000432j5r.jpg ',
