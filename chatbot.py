@@ -307,7 +307,7 @@ def abfrage():
             result.append(myd_frage)
             result.append(myd_antwort)
         if thema in ['socialmedia','Socialmedia','SocialMedia','SocialMedia']:
-            index_frage=int(random.randint(0,25)*2) 
+            index_frage=int(random.randint(0,35)*2) 
             index_antwort=int(index_frage+1)
             myd_frage={"":""}
             myd_antwort={"":""}
