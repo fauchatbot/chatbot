@@ -1,5 +1,5 @@
 Flask==0.12.2
-requests==2.18.4
+requests==2.20.0
 sapcai ==4.0.0
 psycopg2 ==2.8.3
 textblob_de ==0.4.3
