@@ -9,5 +9,5 @@ lxml ==4.4.1
 spacy ==2.2.1
 https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-2.2.0/de_core_news_sm-2.2.0.tar.gz
 # https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz
-chromium-chromedriver==	79.0.3945.79
+chromium-chromedriver==	79.0.3945.79-0ubuntu0.18.04.1
 selenium== 3.141.0
