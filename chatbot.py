@@ -346,6 +346,71 @@ def abfrage():
       'memory': { 'key': 'value' } 
     } 
   )
+
+@app.route('/raumsuche')
+def raumsuche():
+    from selenium import webdriver
+    from selenium.webdriver.common.keys import Keys
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+  # open it, go to a website, and get results
+    wd = webdriver.Chrome('chromedriver',options=options)
+    wd.get("https://wi3-90.wiso.uni-erlangen.de/roomfinder/")
+
+    rooms=["H1","H2","H3","H4","H5","H6",]
+    persons=["Oleg Seifert", "Michael Amberg"]
+    lectures=['It und E-Business','Statistik']
+    suchfeld = wd.find_element_by_id("q")
+    suchwort="It und E-Business"
+    suchfeld.send_keys(input)
+
+
+
+    if suchwort in lectures:
+      wd.find_elements_by_css_selector("input[type='radio'][value='lectures']")[0].click()
+    if suchwort in rooms:
+      wd.find_elements_by_css_selector("input[type='radio'][value='rooms']")[0].click()
+    if suchwort in persons:
+      wd.find_elements_by_css_selector("input[type='radio'][value='persons']")[0].click()
+
+    suchfeld.send_keys(Keys.ENTER)
+
+  #print(wd.page_source)
+    wd.save_screenshot('screenie.png')
+    result=[]
+    myd_result={"":""}
+    myd_bild={"":""}
+    try:
+      search_info=wd.find_element_by_class_name("search_info")
+      ergebnis= search_info.text.replace("\n"," \n ")
+      images=wd.find_elements_by_tag_name("img")
+      url_bild=images[0].get_attribute('src')
+      myd_result = {'type': 'text','content':ergebnis}
+      myd_bild = {'type': 'picture','content':url_bild}
+      result.append(myd_result)
+      result.append(myd_bild)
+      return jsonify( 
+              status=200, 
+              replies=result, 
+              conversation={ 
+                'memory': { 'key': 'value' } 
+            } 
+          )
+
+    #print(result, url_bild)
+    except:
+      ergebnis=wd.find_element_by_id("result").text.replace("\n"," \n ")
+      myd_result = {'type': 'text','content':ergebnis}
+      result.append(myd_result)
+      return jsonify( 
+              status=200, 
+              replies=result, 
+              conversation={ 
+              'memory': { 'key': 'value' } 
+            } 
+          )
 # @app.route('/skript_and_wiki_search', methods=['POST'])
 # def skript_and_wiki_search():
 
