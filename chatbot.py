@@ -346,7 +346,7 @@ def abfrage():
 
 @app.route('/abfrage_oleg')
 def abfrage_oleg():
-    replies=result
+    
     # return replies
     return jsonify( 
     status=200, 
