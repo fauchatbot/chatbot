@@ -385,7 +385,7 @@ def abfrage_oleg():
           }
         ]
       },
-      "delay": null
+      "delay": 1
     }
   ], 
     conversation={ 
