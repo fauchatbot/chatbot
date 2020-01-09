@@ -344,7 +344,7 @@ def abfrage():
   )
 
 
-@app.route('/abfrage_oleg', methods=['POST'])
+@app.route('/abfrage_oleg')
 def abfrage_oleg():
     replies=result
     # return replies
