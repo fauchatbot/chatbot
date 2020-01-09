@@ -344,6 +344,57 @@ def abfrage():
   )
 
 
+@app.route('/abfrage_oleg', methods=['POST'])
+def abfrage_oleg():
+    replies=result
+    # return replies
+    return jsonify( 
+    status=200, 
+    replies= [{ "type": "list",
+      "content": {
+        "elements": [
+          {
+            "title": "",
+            "imageUrl": "",
+            "subtitle": "Wer ist Elon Musk?",
+            "buttons": []
+          },
+          {
+            "title": "",
+            "imageUrl": "",
+            "subtitle": "CEO Tesla",
+            "buttons": []
+          },
+          {
+            "title": "",
+            "imageUrl": "",
+            "subtitle": "asd",
+            "buttons": []
+          },
+          {
+            "title": "",
+            "imageUrl": "",
+            "subtitle": "asdasd",
+            "buttons": []
+          },
+          {
+            "title": "",
+            "imageUrl": "",
+            "subtitle": "asdad",
+            "buttons": []
+          }
+        ]
+      },
+      "delay": null
+    }
+  ], 
+    conversation={ 
+      'memory': { 'key': 'value' } 
+    } 
+  )
+
+
+
 # @app.route('/skript_and_wiki_search', methods=['POST'])
 # def skript_and_wiki_search():
 
