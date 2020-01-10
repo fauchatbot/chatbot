@@ -354,7 +354,10 @@ def abfrage_oleg():
       "content": {
         "elements": [
           {
-            "title": "Wer ist Elon Musk? der ",
+            "title": "Wer ist Elon Musk",
+            "imageUrl": "",
+            "subtitle": "CEO Tesla",
+            "buttons": []
             
           },
           {
