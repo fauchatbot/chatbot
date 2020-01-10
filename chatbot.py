@@ -360,8 +360,7 @@ def abfrage_oleg():
     {'buttons': [], 'imageUrl': '', 'subtitle': 'Didi Chuxing', 'title': ''}]},
   'delay': 5,
   'type': 'list'},
- {'content': 'RWelches Startup hat laut dem Wall Street Journal 2018 die höchste Bewertung ?: 
-  a)Uber b)SpaceX c)Airbnb d) Didi Chuxing', 'type': 'text'},
+ {'content': 'RWelches Startup hat laut dem Wall Street Journal 2018 die höchste Bewertung ?: a)Uber b)SpaceX c)Airbnb d) Didi Chuxing', 'type': 'text'},
  {'content': {'elements': [{'buttons': [],
      'imageUrl': '',
      'subtitle': '',
