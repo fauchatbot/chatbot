@@ -296,7 +296,7 @@ def abfrage_klausur():
     myd_antwort={"":""}
     myd_frage = {'type': 'picture','content':'','delay': 5}
     myd_frage['content'] = klausur_fragen[index_frage]
-    myd_antwort = {'type': 'picture','content':'','delay': }
+    myd_antwort = {'type': 'picture','content':'','delay':1 }
     myd_antwort['content'] = klausur_fragen[index_antwort]
 
     result.append(myd_frage)
