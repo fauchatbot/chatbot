@@ -308,6 +308,8 @@ def abfrage():
             myd_antwort['content'] = list_pm[index_antwort]
 
             result.append(myd_frage)
+            antwort={'content': 'Die Antwortet lautet', 'type': 'text','delay':5}
+            result.append(antwort)
             result.append(myd_antwort)
         if thema in ['socialmedia','Socialmedia','SocialMedia','SocialMedia']:
             index_frage=int(random.randint(0,38)*2) 
@@ -320,6 +322,8 @@ def abfrage():
             myd_antwort['content'] = list_socialmedia[index_antwort]
 
             result.append(myd_frage)
+            antwort={'content': 'Die Antwortet lautet', 'type': 'text','delay':5}
+            result.append(antwort)
             result.append(myd_antwort)
         if thema in ['Technologiemanagement','technologiemanagement','TechnologieManagement']:
             index_frage=int(random.randint(0,29)*2) 
@@ -332,6 +336,8 @@ def abfrage():
             myd_antwort['content'] = list_technologiemanagement[index_antwort]
 
             result.append(myd_frage)
+            antwort={'content': 'Die Antwortet lautet', 'type': 'text','delay':5}
+            result.append(antwort)
             result.append(myd_antwort)
     replies=result
     # return replies
