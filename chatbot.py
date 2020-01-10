@@ -1,7 +1,7 @@
 from datetime import datetime, date
 import spacy
 from io import StringIO
-from dictionaries import dictionary,dict_list_bereinigt, list_pm, list_socialmedia, list_technologiemanagement
+from dictionaries import dictionary,dict_list_bereinigt, list_pm, list_socialmedia, list_technologiemanagement, klausur_fragen
 from xml.dom.minidom import parse as makeDomObjFromFile, parseString as makeDomObjFromString
 import urllib
 from textblob_de import TextBlobDE as TextBlob
@@ -284,7 +284,35 @@ def zeit():
             'memory': { 'key': 'value' } 
             } 
         )
+@app.route('/abfrage_klausur', methods=['POST'])
+def abfrage_klausur():
+    #data = json.loads(request.get_data())
+    #print(data['nlp'])
+    global result
+    result = []
+    index_frage=int(random.randint(0,38)*2) 
+    index_antwort=int(index_frage+1)
+    myd_frage={"":""}
+    myd_antwort={"":""}
+    myd_frage = {'type': 'picture','content':'','delay': 5}
+    myd_frage['content'] = klausur_fragen[index_frage]
+    myd_antwort = {'type': 'picture','content':'','delay': }
+    myd_antwort['content'] = klausur_fragen[index_antwort]
 
+    result.append(myd_frage)
+    antwort={'content': 'Die Antwortet lautet', 'type': 'text','delay':5}
+    result.append(antwort)
+    result.append(myd_antwort)
+        
+    replies=result
+    # return replies
+    return jsonify( 
+    status=200, 
+    replies=result, 
+    conversation={ 
+      'memory': { 'key': 'value' } 
+    } 
+  )
 @app.route('/abfrage', methods=['GET','POST'])
 def abfrage():
     #data = json.loads(request.get_data())
