@@ -300,7 +300,7 @@ def abfrage_klausur():
     myd_antwort['content'] = klausur_fragen[index_antwort]
 
     result.append(myd_frage)
-    antwort={'content': 'Die Antwortet lautet', 'type': 'text','delay':5}
+    antwort={'content': 'Die richtige Antwortet lautet', 'type': 'text','delay':5}
     result.append(antwort)
     result.append(myd_antwort)
         
