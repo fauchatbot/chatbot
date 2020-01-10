@@ -354,10 +354,8 @@ def abfrage_oleg():
       "content": {
         "elements": [
           {
-            "title": "",
-            "imageUrl": "",
-            "subtitle": "Wer ist Elon Musk?",
-            "buttons": []
+            "title": "Wer ist Elon Musk? der ",
+            
           },
           {
             "title": "",
