@@ -145,10 +145,10 @@ def news():
     sentences = ''
     if len(news)>=5:
         for i in range (0,3):
-            sentences += "Neues in der Welt:" + '\n' + news[i]['title'] + '\n' + news[i]['description'] + '\n' + news[i]['link'] + '\n'
+            sentences += "Neues in der Welt:" + '\n' + news[i]['title'] + '\n' + news[i]['description'] + '\n' + news[i]['link'].url + '\n'
     else:
         for i in range (0,len(news)):
-            sentences += "Neues in der Welt:" + '\n' + news[i]['title'] + '\n' + news[i]['description'] + '\n' + news[i]['link'] + '\n'
+            sentences += "Neues in der Welt:" + '\n' + news[i]['title'] + '\n' + news[i]['description'] + '\n' + news[i]['link'].url + '\n'
 
     return jsonify( 
             status=200, 
