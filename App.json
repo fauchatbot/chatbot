@@ -1,8 +1,8 @@
 {
-    "name": "Sato crypto bot",
-    "description": "The server side for Sato.",
+    "name": "FAU bot",
+    "description": "The testing of FAU bot.",
     "image": "heroku/python",
-    "repository": "https://github.com/fauchatbot/chatbot",
+    "repository": "https://github.com/PK2511/chatbot",
     "keywords": ["python", "flask" ],
     "addons": [ "heroku-postgresql" ],
     "environments": {
