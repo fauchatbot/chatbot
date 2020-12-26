@@ -562,8 +562,9 @@ def lecture_search():
 		dict_result['content'] = i
 		result.append(dict_result)
 	
+    result = [{'type': 'text','content':'it works'}]
 
-	replies=result
+    replies=result
     # return replies
     return jsonify( 
     status=200, 
