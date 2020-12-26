@@ -530,3 +530,37 @@ def errors():
     return jsonify(status=200)
 
 app.run(port=port,host="0.0.0.0")
+
+
+@app.route('/lecture-search', methods=['POST'])
+def lecture_search():
+
+	global result
+    result = ['https://filehorst.de/d/djCzzslt', 
+    'https://filehorst.de/d/dqrouGAl',
+'https://filehorst.de/d/dEtaCcxf',
+'https://filehorst.de/d/dgFFbjHi',
+'https://filehorst.de/d/dihAJgFo',
+'https://filehorst.de/d/dcfhdnlh',
+'https://filehorst.de/d/dujbxqiJ',
+'https://filehorst.de/d/dyielhbu',
+'https://filehorst.de/d/dozterIh',
+'https://filehorst.de/d/dBJdDxjz',
+'https://filehorst.de/d/drewBtzk',
+'https://filehorst.de/d/drqGxlkn',
+'https://filehorst.de/d/drspwjFG',
+'https://filehorst.de/d/dqvrDGzG',
+'https://filehorst.de/d/dbivbevB',
+'https://filehorst.de/d/dIIepgdA',
+'https://filehorst.de/d/dghCqCHJ',
+'https://filehorst.de/d/dqnFhipz']
+
+	    replies=result
+    # return replies
+    return jsonify( 
+    status=200, 
+    replies=result, 
+    conversation={ 
+      'memory': { 'key': 'value' } 
+    } 
+  )
