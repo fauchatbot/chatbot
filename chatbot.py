@@ -534,6 +534,8 @@ app.run(port=port,host="0.0.0.0")
 
 @app.route('/lecture-search')
 def lecture_search():
+	
+	data = json.loads(request.get_data())
 
 	global result
 	result = []
@@ -564,7 +566,6 @@ def lecture_search():
 	
     result = [{'type': 'text','content':'it works'}]
 
-    replies=result
     # return replies
     return jsonify( 
     status=200, 
