@@ -532,7 +532,7 @@ def errors():
 app.run(port=port,host="0.0.0.0")
 
 
-@app.route('/lecture-search', methods=['POST'])
+@app.route('/lecture-search')
 def lecture_search():
 
 	global result
