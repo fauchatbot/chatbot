@@ -536,26 +536,34 @@ app.run(port=port,host="0.0.0.0")
 def lecture_search():
 
 	global result
-    result = ['https://filehorst.de/d/djCzzslt', 
+	result = []
+    site_result = ['https://filehorst.de/d/djCzzslt', 
     'https://filehorst.de/d/dqrouGAl',
-'https://filehorst.de/d/dEtaCcxf',
-'https://filehorst.de/d/dgFFbjHi',
-'https://filehorst.de/d/dihAJgFo',
-'https://filehorst.de/d/dcfhdnlh',
-'https://filehorst.de/d/dujbxqiJ',
-'https://filehorst.de/d/dyielhbu',
-'https://filehorst.de/d/dozterIh',
-'https://filehorst.de/d/dBJdDxjz',
-'https://filehorst.de/d/drewBtzk',
-'https://filehorst.de/d/drqGxlkn',
-'https://filehorst.de/d/drspwjFG',
-'https://filehorst.de/d/dqvrDGzG',
-'https://filehorst.de/d/dbivbevB',
-'https://filehorst.de/d/dIIepgdA',
-'https://filehorst.de/d/dghCqCHJ',
-'https://filehorst.de/d/dqnFhipz']
+	'https://filehorst.de/d/dEtaCcxf',
+	'https://filehorst.de/d/dgFFbjHi',
+	'https://filehorst.de/d/dihAJgFo',
+	'https://filehorst.de/d/dcfhdnlh',
+	'https://filehorst.de/d/dujbxqiJ',
+	'https://filehorst.de/d/dyielhbu',
+	'https://filehorst.de/d/dozterIh',
+	'https://filehorst.de/d/dBJdDxjz',
+	'https://filehorst.de/d/drewBtzk',
+	'https://filehorst.de/d/drqGxlkn',
+	'https://filehorst.de/d/drspwjFG',
+	'https://filehorst.de/d/dqvrDGzG',
+	'https://filehorst.de/d/dbivbevB',
+	'https://filehorst.de/d/dIIepgdA',
+	'https://filehorst.de/d/dghCqCHJ',
+	'https://filehorst.de/d/dqnFhipz']
 
-	    replies=result
+	
+    for i in site_result:
+		dict_result = {'type': 'text','content':''}
+		dict_result['content'] = i
+		result.append(dict_result)
+	
+
+	replies=result
     # return replies
     return jsonify( 
     status=200, 
