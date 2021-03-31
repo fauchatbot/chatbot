@@ -5,7 +5,7 @@ psycopg2 ==2.8.3
 textblob_de ==0.4.3
 wikipedia ==1.4.0
 strsim ==0.0.3
-lxml ==4.4.1
+lxml ==4.6.3
 spacy ==2.2.1
 https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-2.2.0/de_core_news_sm-2.2.0.tar.gz
 # https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz
